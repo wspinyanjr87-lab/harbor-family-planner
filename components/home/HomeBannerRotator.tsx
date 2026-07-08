@@ -78,57 +78,57 @@ const banners: HomeBanner[] = [
 
 function DecorativeArt({ visual, accent, glow }: { visual: BannerVisual; accent: string; glow: string }) {
   return (
-    <div className="relative hidden h-full min-w-[170px] items-center justify-center overflow-hidden rounded-[1.5rem] bg-white/30 sm:flex md:min-w-[230px]">
-      <div className={`absolute h-28 w-28 rounded-full ${glow} opacity-45 blur-2xl`} />
-      <div className="absolute bottom-5 h-3 w-36 rounded-full bg-family-ink/10" />
+    <div className="relative hidden h-full min-w-[150px] items-center justify-center overflow-hidden rounded-[1.25rem] bg-white/30 sm:flex md:min-w-[200px]">
+      <div className={`absolute h-24 w-24 rounded-full ${glow} opacity-45 blur-2xl`} />
+      <div className="absolute bottom-4 h-2.5 w-32 rounded-full bg-family-ink/10" />
 
       {visual === "table" ? (
-        <div className="relative h-24 w-36">
-          <div className="absolute bottom-8 left-2 h-7 w-32 rounded-xl bg-white/80 shadow-sm" />
-          <div className="absolute bottom-3 left-7 h-9 w-3 rounded-full bg-family-ink/20" />
-          <div className="absolute bottom-3 right-7 h-9 w-3 rounded-full bg-family-ink/20" />
-          <div className="absolute left-12 top-3 h-11 w-11 rounded-full border-[10px] border-white/85" />
-          <div className="absolute right-6 top-2 h-12 w-7 rounded-b-xl rounded-t-sm bg-white/85" />
-          <div className="absolute right-8 top-0 h-3 w-3 rounded-full" style={{ backgroundColor: accent }} />
+        <div className="relative h-20 w-32">
+          <div className="absolute bottom-7 left-2 h-6 w-28 rounded-xl bg-white/80 shadow-sm" />
+          <div className="absolute bottom-3 left-6 h-7 w-2.5 rounded-full bg-family-ink/20" />
+          <div className="absolute bottom-3 right-6 h-7 w-2.5 rounded-full bg-family-ink/20" />
+          <div className="absolute left-11 top-3 h-9 w-9 rounded-full border-[8px] border-white/85" />
+          <div className="absolute right-6 top-2 h-10 w-6 rounded-b-xl rounded-t-sm bg-white/85" />
+          <div className="absolute right-8 top-0 h-2.5 w-2.5 rounded-full" style={{ backgroundColor: accent }} />
         </div>
       ) : null}
 
       {visual === "notebook" ? (
-        <div className="relative h-28 w-32 rotate-[-5deg] rounded-2xl bg-white/85 p-4 shadow-sm">
-          <div className="mb-3 h-3 w-16 rounded-full" style={{ backgroundColor: accent }} />
-          <div className="mb-2 h-2 w-24 rounded-full bg-family-ink/15" />
-          <div className="mb-2 h-2 w-20 rounded-full bg-family-ink/15" />
-          <div className="h-2 w-24 rounded-full bg-family-ink/15" />
-          <div className="absolute -right-5 bottom-5 h-3 w-20 rotate-[-32deg] rounded-full bg-family-honey" />
+        <div className="relative h-24 w-28 rotate-[-5deg] rounded-2xl bg-white/85 p-4 shadow-sm">
+          <div className="mb-2.5 h-2.5 w-14 rounded-full" style={{ backgroundColor: accent }} />
+          <div className="mb-2 h-1.5 w-20 rounded-full bg-family-ink/15" />
+          <div className="mb-2 h-1.5 w-16 rounded-full bg-family-ink/15" />
+          <div className="h-1.5 w-20 rounded-full bg-family-ink/15" />
+          <div className="absolute -right-5 bottom-5 h-2.5 w-16 rotate-[-32deg] rounded-full bg-family-honey" />
         </div>
       ) : null}
 
       {visual === "books" ? (
-        <div className="relative flex h-28 items-end gap-2">
-          <div className="h-20 w-9 rounded-lg bg-white/85 shadow-sm" />
-          <div className="h-28 w-9 rounded-lg shadow-sm" style={{ backgroundColor: accent }} />
-          <div className="h-16 w-9 rounded-lg bg-family-leaf/70 shadow-sm" />
-          <div className="absolute -right-9 bottom-0 h-12 w-12 rounded-full border-[9px] border-white/80" />
+        <div className="relative flex h-24 items-end gap-2">
+          <div className="h-16 w-8 rounded-lg bg-white/85 shadow-sm" />
+          <div className="h-24 w-8 rounded-lg shadow-sm" style={{ backgroundColor: accent }} />
+          <div className="h-14 w-8 rounded-lg bg-family-leaf/70 shadow-sm" />
+          <div className="absolute -right-8 bottom-0 h-10 w-10 rounded-full border-[8px] border-white/80" />
         </div>
       ) : null}
 
       {visual === "plant" ? (
-        <div className="relative h-28 w-32">
-          <div className="absolute bottom-0 left-10 h-14 w-16 rounded-b-2xl rounded-t-md bg-white/85 shadow-sm" />
-          <div className="absolute bottom-12 left-16 h-16 w-2 rounded-full bg-family-leaf/70" />
-          <div className="absolute left-7 top-2 h-12 w-20 rounded-[999px_999px_999px_0] bg-family-leaf/70" />
-          <div className="absolute right-3 top-0 h-12 w-16 rounded-[999px_999px_0_999px]" style={{ backgroundColor: accent }} />
-          <div className="absolute left-14 top-5 h-10 w-16 rounded-[999px_999px_0_999px] bg-white/60" />
+        <div className="relative h-24 w-28">
+          <div className="absolute bottom-0 left-9 h-12 w-14 rounded-b-2xl rounded-t-md bg-white/85 shadow-sm" />
+          <div className="absolute bottom-10 left-14 h-14 w-2 rounded-full bg-family-leaf/70" />
+          <div className="absolute left-6 top-2 h-10 w-16 rounded-[999px_999px_999px_0] bg-family-leaf/70" />
+          <div className="absolute right-2 top-0 h-10 w-14 rounded-[999px_999px_0_999px]" style={{ backgroundColor: accent }} />
+          <div className="absolute left-12 top-5 h-8 w-14 rounded-[999px_999px_0_999px] bg-white/60" />
         </div>
       ) : null}
 
       {visual === "groceries" ? (
-        <div className="relative h-28 w-36">
-          <div className="absolute bottom-0 left-7 h-20 w-24 rounded-b-2xl rounded-t-lg bg-white/85 shadow-sm" />
-          <div className="absolute bottom-16 left-14 h-8 w-10 rounded-t-full border-4 border-white/85 border-b-0" />
-          <div className="absolute bottom-10 left-2 h-10 w-10 rounded-full" style={{ backgroundColor: accent }} />
-          <div className="absolute bottom-8 right-4 h-12 w-7 rounded-full bg-family-leaf/70" />
-          <div className="absolute bottom-12 right-6 h-4 w-8 rounded-full bg-family-leaf/50" />
+        <div className="relative h-24 w-32">
+          <div className="absolute bottom-0 left-6 h-16 w-22 rounded-b-2xl rounded-t-lg bg-white/85 shadow-sm" />
+          <div className="absolute bottom-14 left-12 h-7 w-10 rounded-t-full border-4 border-white/85 border-b-0" />
+          <div className="absolute bottom-8 left-2 h-9 w-9 rounded-full" style={{ backgroundColor: accent }} />
+          <div className="absolute bottom-7 right-4 h-10 w-6 rounded-full bg-family-leaf/70" />
+          <div className="absolute bottom-11 right-5 h-3.5 w-7 rounded-full bg-family-leaf/50" />
         </div>
       ) : null}
     </div>
@@ -149,7 +149,7 @@ export default function HomeBannerRotator() {
 
   return (
     <section
-      className={`relative overflow-hidden rounded-[1.75rem] bg-gradient-to-br ${activeBanner.theme.background} px-5 py-5 shadow-sm md:min-h-[190px] md:px-7 md:py-6`}
+      className={`relative overflow-hidden rounded-[1.5rem] bg-gradient-to-br ${activeBanner.theme.background} px-5 py-4 shadow-sm md:min-h-[128px] md:px-6 md:py-4`}
     >
       {activeBanner.imagePath ? (
         <>
@@ -163,13 +163,13 @@ export default function HomeBannerRotator() {
         </>
       ) : null}
 
-      <div className="relative flex min-h-[142px] items-center justify-between gap-5 md:min-h-[170px]">
-        <div className="max-w-2xl">
-          <p className="text-xs font-black uppercase tracking-[0.2em]" style={{ color: activeBanner.theme.accent }}>
+      <div className="relative flex min-h-[104px] items-center justify-between gap-5 md:min-h-[112px]">
+        <div className="max-w-2xl pb-4 md:pb-3">
+          <p className="text-[10px] font-black uppercase tracking-[0.2em] md:text-xs" style={{ color: activeBanner.theme.accent }}>
             {activeBanner.eyebrow}
           </p>
-          <h1 className="mt-2 text-3xl font-black leading-tight text-family-ink md:text-5xl">{activeBanner.title}</h1>
-          <p className="mt-2 max-w-xl text-sm font-semibold leading-6 text-family-ink/65 md:text-base">
+          <h1 className="mt-1.5 text-2xl font-black leading-tight text-family-ink md:text-4xl">{activeBanner.title}</h1>
+          <p className="mt-1.5 max-w-xl text-xs font-semibold leading-5 text-family-ink/65 md:text-sm">
             {activeBanner.subtitle}
           </p>
         </div>
@@ -179,11 +179,11 @@ export default function HomeBannerRotator() {
         )}
       </div>
 
-      <div className="absolute bottom-4 left-5 flex gap-2 md:left-7">
+      <div className="absolute bottom-3 left-5 flex gap-2 md:left-6">
         {banners.map((banner, index) => (
           <button
             aria-label={`Show ${banner.title} banner`}
-            className={`h-2.5 rounded-full transition-all ${index === activeIndex ? "w-8 bg-family-ink" : "w-2.5 bg-family-ink/25"}`}
+            className={`h-2 rounded-full transition-all ${index === activeIndex ? "w-7 bg-family-ink" : "w-2 bg-family-ink/25"}`}
             key={banner.title}
             onClick={() => setActiveIndex(index)}
             type="button"
