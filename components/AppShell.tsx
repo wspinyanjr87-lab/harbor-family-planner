@@ -6,7 +6,6 @@ import {
   CheckSquare,
   DollarSign,
   Home,
-  ListChecks,
   Settings,
   ShoppingCart,
   UsersRound,
@@ -24,9 +23,48 @@ const nav = [
   { href: "/settings", label: "Settings", icon: Settings }
 ];
 
+const mobileNav = [nav[0], nav[1], nav[2], nav[3], nav[7]];
+
 export function AppShell({ children }: { children: ReactNode }) {
   return (
     <main className="min-h-screen bg-family-cream">
+      <header className="sticky top-0 z-40 border-b border-black/10 bg-white/90 px-4 py-3 backdrop-blur md:hidden">
+        <div className="flex items-center justify-between gap-3">
+          <Link href="/" className="flex items-center gap-3">
+            <div className="grid h-10 w-10 place-items-center rounded-2xl border border-family-berry/20 bg-family-berry/10 text-family-berry">
+              <Home size={21} />
+            </div>
+            <div>
+              <div className="text-2xl font-black leading-none tracking-tight text-family-ink">Harbor</div>
+              <div className="text-xs font-semibold text-black/45">Family planner</div>
+            </div>
+          </Link>
+          <div className="rounded-2xl bg-family-berry px-3 py-2 text-xs font-black text-white shadow-lg shadow-family-berry/20">
+            Planner
+          </div>
+        </div>
+
+        <nav className="mt-3 flex gap-2 overflow-x-auto pb-1">
+          {mobileNav.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Link
+                key={`mobile-${item.label}`}
+                href={item.href}
+                className={
+                  item.active
+                    ? "flex shrink-0 items-center gap-2 rounded-2xl bg-family-berry px-4 py-2 text-xs font-black text-white shadow-md shadow-family-berry/20"
+                    : "flex shrink-0 items-center gap-2 rounded-2xl bg-family-cloud px-4 py-2 text-xs font-black text-family-ink"
+                }
+              >
+                <Icon size={15} />
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+      </header>
+
       <aside className="fixed left-0 top-0 hidden h-full w-64 border-r border-black/10 bg-white/80 p-5 backdrop-blur md:flex md:flex-col">
         <Link href="/" className="mb-8 flex items-center gap-3">
           <div className="grid h-10 w-10 place-items-center rounded-2xl border border-family-berry/20 bg-family-berry/10 text-family-berry">
@@ -79,7 +117,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       </aside>
 
       <section className="md:pl-64">
-        <div className="mx-auto max-w-7xl p-5 md:p-8">{children}</div>
+        <div className="mx-auto max-w-7xl p-4 pb-8 md:p-8">{children}</div>
       </section>
     </main>
   );
