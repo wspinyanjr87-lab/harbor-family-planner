@@ -1,33 +1,55 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
-import { CalendarDays, ChefHat, Home, ListChecks, Settings, ShoppingCart, Sparkles } from "lucide-react";
+import {
+  CalendarDays,
+  ChefHat,
+  CheckSquare,
+  DollarSign,
+  Home,
+  ListChecks,
+  Settings,
+  ShoppingCart,
+  UsersRound,
+  Utensils
+} from "lucide-react";
 
 const nav = [
-  { href: "/dashboard", label: "Home", icon: Home },
-  { href: "/planner", label: "Planner", icon: ListChecks },
+  { href: "/planner", label: "Planner", icon: CalendarDays, active: true },
+  { href: "/planner", label: "Meals", icon: Utensils },
   { href: "/recipes", label: "Recipes", icon: ChefHat },
-  { href: "/grocery", label: "Grocery", icon: ShoppingCart },
-  { href: "/calendar", label: "Calendar", icon: CalendarDays },
-  { href: "/settings", label: "Settings", icon: Settings },
-  { href: "/sample", label: "Sample", icon: Sparkles }
+  { href: "/grocery", label: "Groceries", icon: ShoppingCart },
+  { href: "/billing", label: "Budget", icon: DollarSign },
+  { href: "/dashboard", label: "Tasks", icon: CheckSquare },
+  { href: "/dashboard", label: "Family", icon: UsersRound },
+  { href: "/settings", label: "Settings", icon: Settings }
 ];
 
-export function AppShell({ children }: { children: React.ReactNode }) {
+export function AppShell({ children }: { children: ReactNode }) {
   return (
     <main className="min-h-screen bg-family-cream">
-      <aside className="fixed left-0 top-0 hidden h-full w-64 border-r border-black/10 bg-white/75 p-5 backdrop-blur md:block">
-        <Link href="/" className="mb-8 block">
-          <div className="text-2xl font-black tracking-tight">Harbor</div>
-          <div className="text-sm text-black/55">Family planner</div>
+      <aside className="fixed left-0 top-0 hidden h-full w-64 border-r border-black/10 bg-white/80 p-5 backdrop-blur md:flex md:flex-col">
+        <Link href="/" className="mb-8 flex items-center gap-3">
+          <div className="grid h-10 w-10 place-items-center rounded-2xl border border-family-berry/20 bg-family-berry/10 text-family-berry">
+            <Home size={22} />
+          </div>
+          <div>
+            <div className="text-3xl font-black tracking-tight text-family-ink">Harbor</div>
+            <div className="text-sm font-semibold text-black/45">Family planner</div>
+          </div>
         </Link>
 
-        <nav className="space-y-2">
+        <nav className="space-y-3">
           {nav.map((item) => {
             const Icon = item.icon;
             return (
               <Link
-                key={item.href}
+                key={`${item.href}-${item.label}`}
                 href={item.href}
-                className="flex items-center gap-3 rounded-2xl px-3 py-2 text-sm font-semibold text-black/70 hover:bg-family-cloud"
+                className={
+                  item.active
+                    ? "flex items-center gap-3 rounded-2xl bg-family-berry px-4 py-3 text-sm font-black text-white shadow-lg shadow-family-berry/20"
+                    : "flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-bold text-black/70 transition hover:bg-family-cloud hover:text-family-ink"
+                }
               >
                 <Icon size={18} />
                 {item.label}
@@ -35,10 +57,29 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             );
           })}
         </nav>
+
+        <div className="mt-auto space-y-4 pt-6">
+          <div className="flex items-center gap-3 rounded-3xl bg-white p-3 shadow-sm ring-1 ring-black/5">
+            <div className="grid h-11 w-11 place-items-center rounded-full bg-family-berry/10 text-xl">🏡</div>
+            <div className="min-w-0 flex-1">
+              <div className="text-sm font-black text-family-ink">Welcome back</div>
+              <div className="text-xs font-bold text-black/45">Harbor Family</div>
+            </div>
+            <span className="text-black/35">⌄</span>
+          </div>
+
+          <div className="rounded-3xl border border-family-berry/10 bg-family-cream p-4 shadow-sm">
+            <p className="text-sm font-black text-family-ink">Invite a family member</p>
+            <p className="mt-1 text-xs leading-5 text-black/50">Keep everyone in the loop.</p>
+            <button className="mt-4 rounded-2xl border border-family-berry/25 bg-white px-5 py-2 text-sm font-black text-family-berry">
+              Invite
+            </button>
+          </div>
+        </div>
       </aside>
 
       <section className="md:pl-64">
-        <div className="mx-auto max-w-6xl p-5 md:p-8">{children}</div>
+        <div className="mx-auto max-w-7xl p-5 md:p-8">{children}</div>
       </section>
     </main>
   );
