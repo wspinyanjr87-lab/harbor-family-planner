@@ -124,7 +124,7 @@ function DecorativeArt({ visual, accent, glow }: { visual: BannerVisual; accent:
 
       {visual === "groceries" ? (
         <div className="relative h-24 w-32">
-          <div className="absolute bottom-0 left-6 h-16 w-22 rounded-b-2xl rounded-t-lg bg-white/85 shadow-sm" />
+          <div className="absolute bottom-0 left-6 h-16 w-20 rounded-b-2xl rounded-t-lg bg-white/85 shadow-sm" />
           <div className="absolute bottom-14 left-12 h-7 w-10 rounded-t-full border-4 border-white/85 border-b-0" />
           <div className="absolute bottom-8 left-2 h-9 w-9 rounded-full" style={{ backgroundColor: accent }} />
           <div className="absolute bottom-7 right-4 h-10 w-6 rounded-full bg-family-leaf/70" />
