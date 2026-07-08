@@ -1,24 +1,12 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import {
-  CalendarDays,
-  ChefHat,
-  CheckSquare,
-  DollarSign,
-  Home,
-  Settings,
-  ShoppingCart,
-  UsersRound,
-  Utensils
-} from "lucide-react";
+import { ChefHat, Home, Settings, ShoppingCart, UsersRound, Utensils } from "lucide-react";
 
 const nav = [
-  { href: "/planner", label: "Planner", icon: CalendarDays, active: true },
+  { href: "/dashboard", label: "Home", icon: Home, active: true },
   { href: "/planner", label: "Meals", icon: Utensils },
   { href: "/recipes", label: "Recipes", icon: ChefHat },
   { href: "/grocery", label: "Groceries", icon: ShoppingCart },
-  { href: "/billing", label: "Budget", icon: DollarSign },
-  { href: "/dashboard", label: "Tasks", icon: CheckSquare },
   { href: "/dashboard", label: "Family", icon: UsersRound },
   { href: "/settings", label: "Settings", icon: Settings }
 ];
@@ -40,7 +28,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             </div>
           </Link>
           <div className="rounded-xl bg-family-berry px-3 py-2 text-xs font-bold text-white shadow-md shadow-family-berry/20">
-            Planner
+            Home
           </div>
         </div>
 
