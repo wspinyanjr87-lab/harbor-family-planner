@@ -1,4 +1,5 @@
 import HarborShell from "@/components/harbor/HarborShell";
+import HarborNextStep from "@/components/harbor/HarborNextStep";
 import { Bell, Cake, CalendarDays, CheckCircle2, Heart, Home, LockKeyhole, Mail, Palette, Plus, Shield, Trash2, UserRound, Users, Utensils } from "lucide-react";
 
 const peopleTypes = ["Adult", "Child", "Pet", "Other"];
@@ -9,8 +10,8 @@ const permissions = [
 ];
 
 const samplePeople = [
-  { name: "William", role: "Manager", type: "Adult", color: "border-[#D4AF37]" },
-  { name: "Victoria", role: "Manager", type: "Adult", color: "border-rose-300" },
+  { name: "Primary Adult", role: "Manager", type: "Adult", color: "border-[#D4AF37]" },
+  { name: "Second Adult", role: "Manager or Planner", type: "Adult", color: "border-rose-300" },
   { name: "Add your next person", role: "Choose access", type: "Child / Pet / Other", color: "border-dashed border-slate-600" }
 ];
 
@@ -66,7 +67,7 @@ export default function SettingsPage() {
                   <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#D4AF37]/80">Family Members</p>
                   <h2 className="harbor-serif mt-2 text-4xl font-semibold text-[#D4AF37]">Add your people</h2>
                 </div>
-                <button className="flex items-center gap-2 rounded-2xl border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-4 py-3 text-sm font-bold text-[#D4AF37]" type="button"><Plus className="h-4 w-4" /> Add Person</button>
+                <a className="flex items-center gap-2 rounded-2xl border border-[#D4AF37]/30 bg-[#D4AF37]/10 px-4 py-3 text-sm font-bold text-[#D4AF37]" href="/onboarding"><Plus className="h-4 w-4" /> Add Person</a>
               </div>
 
               <div className="grid gap-4 lg:grid-cols-3">
@@ -74,7 +75,7 @@ export default function SettingsPage() {
                   <article className={`rounded-3xl border bg-white/[0.03] p-5 ${person.color}`} key={person.name}>
                     <div className="mb-4 flex items-start justify-between gap-4">
                       <div className="grid h-12 w-12 place-items-center rounded-2xl bg-[#D4AF37]/10 text-[#D4AF37]"><UserRound className="h-6 w-6" /></div>
-                      <button className="text-slate-600 hover:text-red-300" type="button"><Trash2 className="h-4 w-4" /></button>
+                      <a className="text-slate-600 hover:text-red-300" href="/settings"><Trash2 className="h-4 w-4" /></a>
                     </div>
                     <h3 className="text-lg font-bold text-white">{person.name}</h3>
                     <p className="mt-1 text-sm text-slate-400">{person.type}</p>
@@ -165,6 +166,13 @@ export default function SettingsPage() {
             </section>
           </aside>
         </section>
+
+        <HarborNextStep
+          title="Plan the first budget-friendly week."
+          text="Once the household basics are clear, the next real step is meals. Free and Standard should start with budget recipes that build the grocery list."
+          href="/planner"
+          action="Continue to Meal Planner"
+        />
       </div>
     </HarborShell>
   );
