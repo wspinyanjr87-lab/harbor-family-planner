@@ -1,11 +1,11 @@
 import HarborShell from "@/components/harbor/HarborShell";
-import { BookOpen, CalendarDays, ChevronRight, Clock, Coffee, PlusCircle, ShoppingCart, Soup, Utensils } from "lucide-react";
+import { BookOpen, CalendarDays, ChevronRight, Clock, Coffee, PlusCircle, Settings, ShoppingCart, Soup, UserPlus, Utensils } from "lucide-react";
 
 const quickActions = [
-  { label: "View Calendar", description: "Check family schedule", href: "/calendar", icon: CalendarDays },
+  { label: "Start Setup", description: "Add people and household basics", href: "/onboarding", icon: UserPlus },
+  { label: "Setup Center", description: "Roles, preferences, and launch settings", href: "/settings", icon: Settings },
   { label: "Plan Meals", description: "Dinner recipes for the week", href: "/planner", icon: Soup },
-  { label: "Grocery List", description: "12 items needed today", href: "/grocery", icon: ShoppingCart },
-  { label: "Add Memory", description: "Capture a family moment", href: "/memories", icon: PlusCircle }
+  { label: "Grocery List", description: "12 items needed today", href: "/grocery", icon: ShoppingCart }
 ];
 
 const todayItems = [
@@ -16,10 +16,10 @@ const todayItems = [
 ];
 
 const nextItems = [
-  { day: "JUL 9", title: "Trysten — Football Conditioning", detail: "5:00 PM", accent: "border-purple-400 text-purple-300" },
-  { day: "JUL 10", title: "Grocery Shopping", detail: "All Day", accent: "border-emerald-400 text-emerald-300" },
-  { day: "JUL 11", title: "Date Night", detail: "7:00 PM", accent: "border-rose-400 text-rose-300" },
-  { day: "JUL 12", title: "Ella's Birthday", detail: "All Day", accent: "border-amber-300 text-amber-200" }
+  { day: "SETUP", title: "Add your people", detail: "Start with adults, kids, pets, or helpers", accent: "border-[#D4AF37] text-[#D4AF37]" },
+  { day: "NEXT", title: "Pick household rhythm", detail: "Meals, calendar, groceries, memories", accent: "border-emerald-400 text-emerald-300" },
+  { day: "THEN", title: "Create the first week", detail: "Starter schedule and meal plan", accent: "border-sky-400 text-sky-300" },
+  { day: "READY", title: "Invite the family", detail: "Roles and access preview", accent: "border-purple-400 text-purple-300" }
 ];
 
 export default function HarborHomePage() {
@@ -35,12 +35,26 @@ export default function HarborHomePage() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#020617]/85 via-[#020617]/35 to-[#020617]/75" />
         <div className="relative flex h-full min-h-[230px] flex-col justify-end px-6 py-10 lg:min-h-[260px] lg:px-12">
           <p className="text-xs font-bold uppercase tracking-[0.35em] text-[#D4AF37]/80">Our Harbor</p>
-          <h1 className="harbor-serif mt-3 text-5xl font-semibold leading-none text-[#D4AF37] lg:text-6xl">Welcome back, William.</h1>
-          <p className="mt-3 max-w-2xl text-base font-light text-slate-300 lg:text-lg">Here&apos;s what&apos;s happening in the Harbor today.</p>
+          <h1 className="harbor-serif mt-3 text-5xl font-semibold leading-none text-[#D4AF37] lg:text-6xl">Welcome to Harbor.</h1>
+          <p className="mt-3 max-w-2xl text-base font-light text-slate-300 lg:text-lg">Start by adding your people, picking your household rhythm, and building the first week together.</p>
         </div>
       </div>
 
       <div className="mx-auto w-full max-w-7xl space-y-10 px-5 py-8 lg:px-10 lg:py-12">
+        <section className="rounded-[2rem] border border-[#D4AF37]/20 bg-[#D4AF37]/10 p-5 lg:p-6">
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#D4AF37]/80">New User Path</p>
+              <h2 className="harbor-serif mt-2 text-3xl font-semibold text-[#D4AF37]">Make this household yours first.</h2>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">Harbor should open clean for a new family: add people, set access, choose what matters, then start planning.</p>
+            </div>
+            <a className="flex items-center justify-center gap-2 rounded-2xl bg-[#D4AF37] px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-[#B5942B]" href="/onboarding">
+              Start First-Run Setup
+              <ChevronRight className="h-4 w-4" />
+            </a>
+          </div>
+        </section>
+
         <section className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {quickActions.map((action) => {
             const Icon = action.icon;
@@ -66,9 +80,9 @@ export default function HarborHomePage() {
             <div className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#D4AF37]/80">Today at a Glance</p>
-                <h2 className="harbor-serif mt-2 text-4xl font-semibold text-[#D4AF37]">Family rhythm</h2>
+                <h2 className="harbor-serif mt-2 text-4xl font-semibold text-[#D4AF37]">Family rhythm preview</h2>
               </div>
-              <p className="text-xs font-bold uppercase tracking-[0.28em] text-slate-500">Monday, Oct 14</p>
+              <p className="text-xs font-bold uppercase tracking-[0.28em] text-slate-500">Starter data</p>
             </div>
 
             <div className="relative ml-4 border-l border-white/10 pl-8">
@@ -129,12 +143,9 @@ export default function HarborHomePage() {
                 <Utensils className="h-7 w-7 text-[#D4AF37]" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">Today&apos;s Plan</h3>
-                <p className="text-sm text-slate-400">2 of 3 meals planned</p>
+                <h3 className="text-xl font-bold text-white">Starter Shelf</h3>
+                <p className="text-sm text-slate-400">recipes ready to customize</p>
               </div>
-            </div>
-            <div className="mt-5 h-2 rounded-full bg-slate-800">
-              <div className="h-2 w-2/3 rounded-full bg-[#D4AF37]" />
             </div>
           </div>
 
@@ -145,25 +156,23 @@ export default function HarborHomePage() {
                 <ShoppingCart className="h-7 w-7 text-[#D4AF37]" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">12 items</h3>
-                <p className="text-sm text-slate-400">needed today</p>
+                <h3 className="text-xl font-bold text-white">Empty List</h3>
+                <p className="text-sm text-slate-400">fills as meals are planned</p>
               </div>
-            </div>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {["Produce", "Dairy", "Pantry", "Snacks"].map((item) => (
-                <span className="rounded-full border border-[#D4AF37]/20 px-3 py-1 text-xs font-semibold text-[#D4AF37]" key={item}>{item}</span>
-              ))}
             </div>
           </div>
 
           <div className="harbor-glass rounded-3xl p-6">
-            <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#D4AF37]/80">Recent Memories</p>
-            <div className="mt-5 grid grid-cols-4 gap-3">
-              {["🌅", "🍽️", "🏖️", "+12"].map((item) => (
-                <div className="grid aspect-square place-items-center rounded-2xl border border-white/5 bg-white/[0.04] text-xl" key={item}>{item}</div>
-              ))}
+            <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#D4AF37]/80">People Snapshot</p>
+            <div className="mt-5 flex items-center gap-4">
+              <div className="grid h-16 w-16 place-items-center rounded-full border border-[#D4AF37]/40 bg-[#D4AF37]/10">
+                <UserPlus className="h-7 w-7 text-[#D4AF37]" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-white">Add People</h3>
+                <p className="text-sm text-slate-400">family, pets, helpers</p>
+              </div>
             </div>
-            <p className="mt-5 text-sm text-slate-400">Small moments saved from the week.</p>
           </div>
         </section>
       </div>
