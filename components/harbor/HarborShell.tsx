@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Anchor, CalendarDays, Camera, Home, ShoppingCart, User, Utensils } from "lucide-react";
+import { Anchor, CalendarDays, Camera, Home, Settings, ShoppingCart, User, UserPlus, Utensils } from "lucide-react";
 
 type HarborSection = "home" | "calendar" | "planner" | "grocery" | "memories";
 
@@ -61,7 +61,18 @@ export default function HarborShell({ active, children }: { active: HarborSectio
             })}
           </nav>
 
-          <div className="space-y-4 p-6">
+          <div className="space-y-3 px-6 pb-3">
+            <a className="flex items-center gap-3 rounded-2xl border border-[#D4AF37]/20 bg-[#D4AF37]/10 px-4 py-3 text-sm font-bold text-[#D4AF37] transition hover:bg-[#D4AF37]/15" href="/onboarding">
+              <UserPlus className="h-4 w-4" />
+              Start Setup
+            </a>
+            <a className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-bold text-slate-300 transition hover:text-[#D4AF37]" href="/settings">
+              <Settings className="h-4 w-4" />
+              Setup Center
+            </a>
+          </div>
+
+          <div className="space-y-4 p-6 pt-3">
             <div className="harbor-glass flex items-center gap-3 rounded-2xl p-4">
               <div className="grid h-10 w-10 place-items-center rounded-full border border-[#D4AF37]/30 bg-slate-900">
                 <User className="h-5 w-5 text-[#D4AF37]" />
