@@ -38,6 +38,30 @@ body {
   backdrop-filter: blur(14px);
 }
 
+.harbor-checkbox {
+  display: inline-grid;
+  width: 20px;
+  height: 20px;
+  appearance: none;
+  cursor: pointer;
+  place-items: center;
+  border: 1px solid var(--harbor-gold);
+  border-radius: 6px;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.harbor-checkbox:checked {
+  background: var(--harbor-gold);
+}
+
+.harbor-checkbox:checked::after {
+  content: "✓";
+  color: var(--harbor-navy);
+  font-size: 14px;
+  font-weight: 800;
+}
+
 .product-card {
   border: 1px solid rgba(16, 24, 40, 0.08);
   background: rgba(255, 255, 255, 0.82);
