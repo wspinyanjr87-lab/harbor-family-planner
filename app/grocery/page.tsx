@@ -1,4 +1,5 @@
 import HarborShell from "@/components/harbor/HarborShell";
+import HarborNextStep from "@/components/harbor/HarborNextStep";
 import { groceryCategories } from "@/lib/harborStarterData";
 import { Beef, Carrot, Coffee, Milk, Package, Plus, PlusCircle, ShoppingBasket, Trash2 } from "lucide-react";
 
@@ -40,7 +41,7 @@ export default function GroceryPage() {
           <div className="space-y-10">
             <div className="flex w-fit items-center gap-1 rounded-xl border border-white/10 bg-white/5 p-1">
               {['All', 'Purchased', 'Unpurchased'].map((filter, index) => (
-                <button className={`rounded-lg px-4 py-2 text-sm font-semibold ${index === 0 ? "bg-[#D4AF37] text-slate-950" : "text-slate-400 hover:text-white"}`} key={filter} type="button">{filter}</button>
+                <a className={`rounded-lg px-4 py-2 text-sm font-semibold ${index === 0 ? "bg-[#D4AF37] text-slate-950" : "text-slate-400 hover:text-white"}`} href="/grocery" key={filter}>{filter}</a>
               ))}
             </div>
 
@@ -56,7 +57,7 @@ export default function GroceryPage() {
                           <input checked={Boolean(item.checked)} className="harbor-checkbox" readOnly type="checkbox" />
                           <span className={`${item.checked ? "text-slate-400 line-through decoration-[#D4AF37]" : "text-white"}`}>{item.name}</span>
                         </label>
-                        <button className="text-slate-600 opacity-0 transition group-hover:opacity-100 hover:text-red-300" type="button"><Trash2 className="h-4 w-4" /></button>
+                        <a className="text-slate-600 opacity-0 transition group-hover:opacity-100 hover:text-red-300" href="/grocery"><Trash2 className="h-4 w-4" /></a>
                       </article>
                     ))}
                   </div>
@@ -79,7 +80,7 @@ export default function GroceryPage() {
                     {groceryCategories.map((category) => <option key={category.name}>{category.name}</option>)}
                   </select>
                 </label>
-                <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#D4AF37] py-3 font-bold text-slate-950 transition hover:bg-[#B5942B]" type="button"><Plus className="h-4 w-4" /> Add to List</button>
+                <a className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#D4AF37] py-3 font-bold text-slate-950 transition hover:bg-[#B5942B]" href="/grocery"><Plus className="h-4 w-4" /> Add to List</a>
               </div>
             </section>
 
@@ -87,7 +88,7 @@ export default function GroceryPage() {
               <h2 className="harbor-serif mb-4 text-2xl font-semibold text-white">Budget Suggestion</h2>
               <div className="flex items-center justify-between rounded-xl border border-white/5 bg-white/5 p-3">
                 <div className="flex items-center gap-3"><Coffee className="h-5 w-5 text-[#D4AF37]" /><span className="text-sm text-slate-300">Oatmeal or cereal</span></div>
-                <button className="text-[#D4AF37] transition hover:scale-110" type="button"><PlusCircle className="h-5 w-5" /></button>
+                <a className="text-[#D4AF37] transition hover:scale-110" href="/grocery"><PlusCircle className="h-5 w-5" /></a>
               </div>
               <p className="mt-4 text-center text-xs italic text-slate-500">Cheap breakfast staples matter more than fancy extras in the default list.</p>
             </section>
@@ -95,6 +96,13 @@ export default function GroceryPage() {
             <a className="block rounded-3xl border border-[#D4AF37]/20 bg-[#D4AF37]/10 p-5 text-center text-sm font-bold text-[#D4AF37] transition hover:bg-[#D4AF37] hover:text-slate-950" href="/planner">Back to Budget Meals</a>
           </aside>
         </section>
+
+        <HarborNextStep
+          title="Put the week on the calendar."
+          text="After meals and groceries are planned, the calendar helps the family see when shopping, prep, pickups, and family time happen."
+          href="/calendar"
+          action="Continue to Calendar"
+        />
       </div>
     </HarborShell>
   );
