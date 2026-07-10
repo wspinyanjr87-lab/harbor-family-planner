@@ -1,3 +1,6 @@
+"use client";
+
+import { useMemo, useState } from "react";
 import HarborShell from "@/components/harbor/HarborShell";
 import HarborNextStep from "@/components/harbor/HarborNextStep";
 import { calendarEventsByDay } from "@/lib/harborStarterData";
@@ -5,6 +8,7 @@ import { CalendarDays, Check, ChevronLeft, ChevronRight, Clock, Heart, Plus, Use
 
 type CalendarEvent = { label: string; tone: "gold" | "sky" | "emerald" | "purple" };
 type CalendarDay = {
+  key: string;
   number: string;
   muted?: boolean;
   today?: boolean;
@@ -12,20 +16,6 @@ type CalendarDay = {
 };
 
 const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const days: CalendarDay[] = [
-  { number: "29", muted: true },
-  { number: "30", muted: true },
-  ...Array.from({ length: 31 }, (_, index): CalendarDay => {
-    const number = String(index + 1);
-    return {
-      number,
-      today: number === "14",
-      events: calendarEventsByDay[number]
-    };
-  }),
-  { number: "1", muted: true },
-  { number: "2", muted: true }
-];
 
 const toneClasses = {
   gold: "border-[#D4AF37]/20 bg-[#D4AF37]/10 text-[#D4AF37]",
@@ -33,6 +23,44 @@ const toneClasses = {
   emerald: "border-emerald-500/20 bg-emerald-500/10 text-emerald-300",
   purple: "border-purple-500/20 bg-purple-500/10 text-purple-300"
 };
+
+function sameLocalDay(a: Date, b: Date) {
+  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+}
+
+function getMonthDays(viewDate: Date, today: Date): CalendarDay[] {
+  const year = viewDate.getFullYear();
+  const month = viewDate.getMonth();
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  const previousMonthLastDay = new Date(year, month, 0).getDate();
+  const leadingDays = firstDay.getDay();
+  const totalCurrentDays = lastDay.getDate();
+  const cells: CalendarDay[] = [];
+
+  for (let index = leadingDays - 1; index >= 0; index -= 1) {
+    const number = previousMonthLastDay - index;
+    cells.push({ key: `prev-${number}`, number: String(number), muted: true });
+  }
+
+  for (let day = 1; day <= totalCurrentDays; day += 1) {
+    const date = new Date(year, month, day);
+    const number = String(day);
+    cells.push({
+      key: `current-${day}`,
+      number,
+      today: sameLocalDay(date, today),
+      events: calendarEventsByDay[number]
+    });
+  }
+
+  const trailingDays = cells.length % 7 === 0 ? 0 : 7 - (cells.length % 7);
+  for (let day = 1; day <= trailingDays; day += 1) {
+    cells.push({ key: `next-${day}`, number: String(day), muted: true });
+  }
+
+  return cells;
+}
 
 const agenda = [
   { time: "07:30 AM", title: "School + work launch", detail: "Morning checklist and breakfast", icon: Users, border: "border-sky-400", text: "text-sky-300" },
@@ -47,17 +75,39 @@ const statuses = [
 ];
 
 export default function CalendarPage() {
+  const [viewDate, setViewDate] = useState(() => new Date());
+  const today = useMemo(() => new Date(), []);
+  const days = useMemo(() => getMonthDays(viewDate, today), [viewDate, today]);
+  const monthLabel = useMemo(
+    () => viewDate.toLocaleDateString(undefined, { month: "long", year: "numeric" }),
+    [viewDate]
+  );
+  const todayLabel = useMemo(
+    () => today.toLocaleDateString(undefined, { weekday: "long", month: "short", day: "numeric" }),
+    [today]
+  );
+
+  function moveMonth(direction: number) {
+    setViewDate((current) => new Date(current.getFullYear(), current.getMonth() + direction, 1));
+  }
+
+  function jumpToToday() {
+    setViewDate(new Date());
+  }
+
   return (
     <HarborShell active="calendar">
       <header className="border-b border-white/5 px-6 py-8 lg:px-12">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <h1 className="harbor-serif text-5xl font-semibold text-[#D4AF37]">Family Calendar</h1>
-            <div className="mt-3 flex items-center gap-4">
-              <a className="text-white/60 transition hover:text-[#D4AF37]" href="/settings"><ChevronLeft /></a>
-              <p className="harbor-serif text-2xl tracking-wide text-white">October 2024</p>
-              <a className="text-white/60 transition hover:text-[#D4AF37]" href="/settings"><ChevronRight /></a>
+            <div className="mt-3 flex flex-wrap items-center gap-4">
+              <button aria-label="Previous month" className="text-white/60 transition hover:text-[#D4AF37]" onClick={() => moveMonth(-1)} type="button"><ChevronLeft /></button>
+              <p className="harbor-serif text-2xl tracking-wide text-white">{monthLabel}</p>
+              <button aria-label="Next month" className="text-white/60 transition hover:text-[#D4AF37]" onClick={() => moveMonth(1)} type="button"><ChevronRight /></button>
+              <button className="rounded-full border border-[#D4AF37]/30 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#D4AF37] transition hover:bg-[#D4AF37]/10" onClick={jumpToToday} type="button">Today</button>
             </div>
+            <p className="mt-2 text-sm text-slate-500">Synced to this device&apos;s local date: {todayLabel}</p>
           </div>
 
           <div className="flex flex-wrap items-center gap-4">
@@ -80,8 +130,8 @@ export default function CalendarPage() {
                 {weekdays.map((day) => <div className="py-3 text-center text-[10px] font-bold uppercase tracking-[0.24em] text-[#D4AF37]/80" key={day}>{day}</div>)}
               </div>
               <div className="grid grid-cols-7">
-                {days.map((day, index) => (
-                  <div className={`min-h-[104px] border-b border-r border-white/5 p-2 sm:min-h-[120px] sm:p-3 ${day.muted ? "bg-black/20 opacity-30" : ""} ${day.today ? "border-2 border-[#D4AF37]/25 bg-[#D4AF37]/5" : ""}`} key={`${day.number}-${index}`}>
+                {days.map((day) => (
+                  <div className={`min-h-[104px] border-b border-r border-white/5 p-2 sm:min-h-[120px] sm:p-3 ${day.muted ? "bg-black/20 opacity-30" : ""} ${day.today ? "border-2 border-[#D4AF37]/25 bg-[#D4AF37]/5" : ""}`} key={day.key}>
                     <span className={`text-sm ${day.today ? "font-bold text-[#D4AF37]" : "text-slate-400"}`}>{day.number}</span>
                     <div className="mt-2 space-y-1">
                       {day.events?.map((event) => (
