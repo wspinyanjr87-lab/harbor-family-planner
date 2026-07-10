@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import HarborShell from "@/components/harbor/HarborShell";
 import HarborNextStep from "@/components/harbor/HarborNextStep";
+import HarborCustomRecipes from "@/components/harbor/HarborCustomRecipes";
 import { budgetStarterRecipes, featuredBudgetIngredients, weeklyBudgetMeals } from "@/lib/harborStarterData";
 import { getRecipeSlug } from "@/lib/recipeDetails";
 import { CalendarCheck, ChefHat, Clock, Crown, DollarSign, Flame, ListChecks, Plus, Search, Sparkles, Users } from "lucide-react";
@@ -17,19 +18,19 @@ const mealPlans = [
     name: "Free",
     tone: "emerald",
     meals: ["Dinner", "Late-night snack"],
-    extras: ["Starter grocery list", "Manual meal selection"],
+    extras: ["Smaller Harbor recipe shelf", "Unlimited personal recipes", "Starter grocery list", "Manual meal selection"],
   },
   {
     name: "Standard",
     tone: "sky",
     meals: ["Lunch", "Dinner", "Late-night snack"],
-    extras: ["Expanded recipe library", "Better weekly planning"],
+    extras: ["Larger Harbor recipe shelf", "Unlimited personal recipes", "More weekly meal options", "Expanded grocery support"],
   },
   {
     name: "Premium",
     tone: "gold",
     meals: ["Breakfast", "Lunch", "Dinner", "Late-night snack"],
-    extras: ["Smarter grocery model", "Live updates", "Early and prerelease feature access"],
+    extras: ["Full Harbor recipe shelf", "Unlimited personal recipes", "Smarter grocery model", "Live updates", "Early and prerelease feature access"],
   },
 ] as const;
 
@@ -89,6 +90,8 @@ export default function PlannerPage() {
           })}
         </section>
 
+        <HarborCustomRecipes />
+
         <div className="grid gap-8 xl:grid-cols-[1fr_384px]">
           <section className="space-y-10">
             <div className="flex flex-col gap-4 rounded-3xl border border-white/5 bg-white/5 p-4 md:flex-row md:items-center md:justify-between">
@@ -97,7 +100,7 @@ export default function PlannerPage() {
                 <input
                   className="w-full rounded-2xl border border-[#D4AF37]/20 bg-slate-950/60 py-3 pl-11 pr-4 text-sm text-white outline-none transition focus:border-[#D4AF37]"
                   onChange={(event) => setQuery(event.target.value)}
-                  placeholder="Search family recipes..."
+                  placeholder="Search Harbor recipes..."
                   type="search"
                   value={query}
                 />
@@ -117,7 +120,7 @@ export default function PlannerPage() {
             </div>
 
             <div className="flex items-center justify-between gap-4">
-              <p className="text-sm text-slate-400">Showing <span className="font-bold text-[#D4AF37]">{filteredRecipes.length}</span> recipes</p>
+              <p className="text-sm text-slate-400">Showing <span className="font-bold text-[#D4AF37]">{filteredRecipes.length}</span> Harbor recipes</p>
               {(query || activeFilter !== "All") ? (
                 <button className="text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-white" onClick={() => { setQuery(""); setActiveFilter("All"); }} type="button">Clear filters</button>
               ) : null}
@@ -130,7 +133,7 @@ export default function PlannerPage() {
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
                     <div>
                       <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#D4AF37]/80">{group}</p>
-                      <h2 className="harbor-serif text-3xl font-semibold text-white">{recipes.length} family-friendly ideas</h2>
+                      <h2 className="harbor-serif text-3xl font-semibold text-white">{recipes.length} Harbor-made ideas</h2>
                     </div>
                     <a className="text-xs font-bold uppercase tracking-widest text-slate-500 transition hover:text-[#D4AF37]" href="/settings">Manage food preferences</a>
                   </div>
@@ -206,12 +209,12 @@ export default function PlannerPage() {
 
             <section className="rounded-3xl border border-[#D4AF37]/10 bg-gradient-to-br from-[#D4AF37]/5 to-[#D4AF37]/15 p-6">
               <div className="mb-3 flex items-center gap-3"><ChefHat className="h-7 w-7 text-[#D4AF37]" /><h3 className="text-sm font-bold uppercase tracking-widest text-[#D4AF37]">Planner Rule</h3></div>
-              <p className="harbor-serif text-lg italic leading-7 text-slate-300">&quot;Food preferences belong to the household. Harbor should guide, not guess.&quot;</p>
+              <p className="harbor-serif text-lg italic leading-7 text-slate-300">&quot;Upgrades unlock more Harbor ideas and smarter tools. Your own recipes always belong to you.&quot;</p>
             </section>
           </aside>
         </div>
 
-        <HarborNextStep title="Turn meals into groceries." text="Choose a recipe, review its steps, and add its grocery notes to the family list." href="/grocery" action="Continue to Grocery List" />
+        <HarborNextStep title="Turn meals into groceries." text="Choose a Harbor recipe or save a personal favorite, then carry the plan into the grocery list." href="/grocery" action="Continue to Grocery List" />
       </div>
     </HarborShell>
   );
