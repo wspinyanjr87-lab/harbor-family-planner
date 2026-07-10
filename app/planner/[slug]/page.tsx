@@ -26,7 +26,7 @@ export default function RecipeDetailPage({ params }: { params: { slug: string } 
             <span className={`rounded-lg border bg-slate-950/80 px-2 py-1 text-[10px] font-bold uppercase tracking-widest ${recipe.edition === "Free" ? "border-emerald-400/40 text-emerald-300" : "border-sky-400/40 text-sky-300"}`}>{recipe.edition}</span>
           </div>
           <h1 className="harbor-serif mt-3 text-5xl font-semibold text-[#D4AF37] lg:text-6xl">{recipe.title}</h1>
-          <p className="mt-3 max-w-3xl text-slate-300">Budget-friendly, no onion, no mushrooms, and written for a real family kitchen.</p>
+          <p className="mt-3 max-w-3xl text-slate-300">Budget-friendly and written for a real family kitchen. Household allergies and preferences are managed in Setup Center.</p>
         </div>
       </header>
 
@@ -68,7 +68,7 @@ export default function RecipeDetailPage({ params }: { params: { slug: string } 
               <ul className="space-y-2 text-sm text-slate-300">
                 {recipe.detail.groceryNotes.map((note) => <li key={note}>• {note}</li>)}
               </ul>
-              <a className="mt-5 block rounded-2xl bg-[#D4AF37] px-5 py-3 text-center text-sm font-bold text-slate-950 transition hover:bg-[#B5942B]" href="/grocery">Open Grocery List</a>
+              <a className="mt-5 block rounded-2xl bg-[#D4AF37] px-5 py-3 text-center text-sm font-bold text-slate-950 transition hover:bg-[#B5942B]" href={`/grocery?recipe=${recipe.slug}`}>Add to Grocery List</a>
             </section>
           </aside>
 
@@ -93,8 +93,8 @@ export default function RecipeDetailPage({ params }: { params: { slug: string } 
         <HarborNextStep
           title="Turn this recipe into groceries."
           text="After reviewing ingredients and steps, continue to the grocery list so the meal plan can become a real shopping plan."
-          href="/grocery"
-          action="Open Grocery List"
+          href={`/grocery?recipe=${recipe.slug}`}
+          action="Add to Grocery List"
         />
       </div>
     </HarborShell>
