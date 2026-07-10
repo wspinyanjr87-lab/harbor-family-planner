@@ -86,8 +86,8 @@ export default function HarborShell({ active, children }: { active: HarborSectio
 
             <div className="rounded-2xl border border-[#D4AF37]/20 bg-[#D4AF37]/5 p-4">
               <Anchor className="mb-3 h-5 w-5 text-[#D4AF37]" />
-              <p className="harbor-serif text-lg italic leading-6 text-[#D4AF37]">Anchored in Faith</p>
-              <p className="mt-1 text-xs uppercase tracking-[0.2em] text-slate-500">Joshua 24:15</p>
+              <p className="harbor-serif text-lg italic leading-6 text-[#D4AF37]">Your family, in one place.</p>
+              <p className="mt-1 text-xs uppercase tracking-[0.2em] text-slate-500">Plan • Share • Remember</p>
             </div>
           </div>
         </aside>
@@ -109,8 +109,8 @@ export default function HarborShell({ active, children }: { active: HarborSectio
           {children}
 
           <footer className="mt-auto border-t border-white/5 bg-[#010411] px-5 py-8 text-center">
-            <p className="harbor-serif text-2xl italic tracking-wide text-[#D4AF37]">&quot;As for me and my house, we will serve the Lord.&quot;</p>
-            <p className="mt-2 text-xs font-bold uppercase tracking-[0.32em] text-slate-500">Joshua 24:15</p>
+            <p className="harbor-serif text-2xl italic tracking-wide text-[#D4AF37]">Plan together. Live fully.</p>
+            <p className="mt-2 text-xs font-bold uppercase tracking-[0.32em] text-slate-500">Harbor Family HQ</p>
           </footer>
         </section>
       </div>
