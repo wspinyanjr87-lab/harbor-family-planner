@@ -92,7 +92,7 @@ export default function HarborShell({ active, children }: { active: HarborSectio
           </div>
         </aside>
 
-        <section className="min-w-0 flex-1 pb-20 lg:ml-72 lg:pb-0">
+        <section className="min-w-0 flex-1 pb-24 lg:ml-72 lg:pb-0">
           <header className="sticky top-0 z-30 flex items-center justify-between border-b border-white/5 bg-[#020617]/85 px-5 py-4 backdrop-blur-xl lg:hidden">
             <a className="flex items-center gap-3" href="/">
               <HarborMark />
@@ -115,18 +115,22 @@ export default function HarborShell({ active, children }: { active: HarborSectio
         </section>
       </div>
 
-      <nav className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-5 border-t border-white/10 bg-[#010411]/95 px-1 py-2 backdrop-blur-xl lg:hidden" aria-label="Harbor mobile navigation">
+      <nav
+        aria-label="Harbor mobile navigation"
+        className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-5 items-start border-t border-white/10 bg-[#010411]/98 px-1 pt-1 shadow-[0_-12px_30px_rgba(0,0,0,0.35)] backdrop-blur-xl lg:hidden"
+        style={{ paddingBottom: "max(0.25rem, env(safe-area-inset-bottom))" }}
+      >
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = active === item.key;
           return (
             <a
-              className={`flex min-w-0 flex-col items-center gap-1 rounded-xl px-1 py-2 text-[9px] font-bold uppercase tracking-wide transition ${isActive ? "bg-[#D4AF37]/12 text-[#D4AF37]" : "text-slate-500 hover:text-slate-200"}`}
+              className={`flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-lg px-0.5 py-1 text-[8px] font-bold uppercase leading-none tracking-normal transition ${isActive ? "bg-[#D4AF37]/10 text-[#D4AF37]" : "text-slate-500 hover:text-slate-200"}`}
               href={item.href}
               key={item.key}
             >
-              <Icon className="h-5 w-5" />
-              <span className="truncate">{item.shortLabel}</span>
+              <Icon className="h-[18px] w-[18px]" />
+              <span className="max-w-full truncate">{item.shortLabel}</span>
             </a>
           );
         })}
