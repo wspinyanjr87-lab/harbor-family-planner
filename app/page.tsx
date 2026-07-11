@@ -1,162 +1,268 @@
-import HarborShell from "@/components/harbor/HarborShell";
-import { Anchor, CalendarDays, Camera, ChevronRight, Clock, Coffee, Settings, ShoppingCart, Soup, UserPlus, Utensils } from "lucide-react";
+"use client";
 
-const quickActions = [
-  { label: "View Calendar", description: "Check the family schedule", href: "/calendar", icon: CalendarDays },
-  { label: "Plan Meals", description: "Budget recipes for the week", href: "/planner", icon: Soup },
-  { label: "Grocery List", description: "Review weekly staples", href: "/grocery", icon: ShoppingCart },
-  { label: "Add Memory", description: "Start the family memory shelf", href: "/memories", icon: Camera }
-];
+import { FormEvent, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Anchor, ArrowRight, CheckCircle2, Eye, EyeOff, Lighthouse, Loader2, ShieldCheck, Sparkles } from "lucide-react";
+import { supabase } from "@/lib/supabase/client";
 
-const todayItems = [
-  { time: "Step 1", title: "Set up the household", detail: "Add people, roles, birthdays, pets, and access levels", icon: UserPlus },
-  { time: "Step 2", title: "Pick the family rhythm", detail: "Choose meals, calendar, groceries, memories, and notifications", icon: Settings },
-  { time: "Step 3", title: "Plan the budget week", detail: "Start with Free / Standard meal ideas before premium packs", icon: Utensils },
-  { time: "Step 4", title: "Review the dashboard", detail: "Calendar, grocery list, and memories become the home base", icon: Coffee }
-];
+type AuthMode = "signin" | "signup";
 
-const nextItems = [
-  { day: "SETUP", title: "Add your people", detail: "Create household members and access roles", href: "/onboarding", accent: "border-l-[#D4AF37] text-[#D4AF37]" },
-  { day: "CENTER", title: "Finish Setup Center", detail: "Save household details and enabled sections", href: "/settings", accent: "border-l-emerald-400 text-emerald-300" },
-  { day: "MEALS", title: "Build the first week", detail: "Open the budget starter meal shelf", href: "/planner", accent: "border-l-sky-400 text-sky-300" },
-  { day: "GROCERY", title: "Check the grocery list", detail: "Review staples tied to the meal plan", href: "/grocery", accent: "border-l-purple-400 text-purple-300" }
-];
+export default function HarborWelcomePage() {
+  const router = useRouter();
+  const [mode, setMode] = useState<AuthMode>("signin");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [checkingSession, setCheckingSession] = useState(true);
+  const [message, setMessage] = useState("");
+  const [confirmationSent, setConfirmationSent] = useState(false);
 
-const routeCards = [
-  { label: "Calendar", description: "See the family month view", href: "/calendar", icon: CalendarDays },
-  { label: "Meals", description: "Open budget recipe planning", href: "/planner", icon: Utensils },
-  { label: "Groceries", description: "Review weekly grocery staples", href: "/grocery", icon: ShoppingCart },
-  { label: "Memories", description: "Start the family memory shelf", href: "/memories", icon: Camera }
-];
+  useEffect(() => {
+    let active = true;
 
-export default function HarborHomePage() {
-  return (
-    <HarborShell active="home">
-      <header className="relative h-64 overflow-hidden border-b border-white/5">
-        <img
-          alt="Lighthouse sunset"
-          className="h-full w-full object-cover"
-          src="https://images.unsplash.com/photo-1482189349482-3defd547e0e9?q=80&w=2000&auto=format&fit=crop"
-        />
-        <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-b from-[#020617]/40 to-[#020617]/95 p-6 lg:p-12">
-          <div className="max-w-4xl">
-            <p className="text-xs font-bold uppercase tracking-[0.35em] text-[#D4AF37]/80">Harbor Family HQ</p>
-            <h1 className="harbor-serif mt-3 text-5xl font-semibold leading-none text-[#D4AF37] lg:text-6xl">Welcome to Harbor.</h1>
-            <p className="mt-3 max-w-2xl text-base font-light text-slate-300 lg:text-lg">Set up your household, plan budget-friendly meals, build the grocery list, and keep the family rhythm in one place.</p>
-          </div>
+    async function checkSession() {
+      const { data } = await supabase.auth.getSession();
+      if (!active) return;
+
+      if (data.session) {
+        router.replace("/dashboard");
+        return;
+      }
+
+      setCheckingSession(false);
+    }
+
+    void checkSession();
+
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (session) router.replace("/dashboard");
+    });
+
+    return () => {
+      active = false;
+      listener.subscription.unsubscribe();
+    };
+  }, [router]);
+
+  function switchMode(nextMode: AuthMode) {
+    setMode(nextMode);
+    setMessage("");
+    setConfirmationSent(false);
+  }
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setMessage("");
+    setConfirmationSent(false);
+
+    if (!email.trim() || !password) {
+      setMessage("Enter your email and password to continue.");
+      return;
+    }
+
+    if (password.length < 6) {
+      setMessage("Your password needs at least 6 characters.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      if (mode === "signin") {
+        const { error } = await supabase.auth.signInWithPassword({
+          email: email.trim(),
+          password,
+        });
+
+        if (error) throw error;
+        router.replace("/dashboard");
+        router.refresh();
+        return;
+      }
+
+      const { data, error } = await supabase.auth.signUp({
+        email: email.trim(),
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/dashboard`,
+        },
+      });
+
+      if (error) throw error;
+
+      if (data.session) {
+        router.replace("/onboarding");
+        router.refresh();
+        return;
+      }
+
+      setConfirmationSent(true);
+      setMessage("We sent a confirmation link to your inbox. Open it, then come back and sign in to enter Harbor.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Harbor could not complete that request. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  if (checkingSession) {
+    return (
+      <main className="grid min-h-screen place-items-center bg-[#020617] text-slate-200">
+        <div className="flex items-center gap-3 text-sm text-slate-400">
+          <Loader2 className="h-5 w-5 animate-spin text-[#D4AF37]" />
+          Lighting the harbor...
         </div>
-      </header>
+      </main>
+    );
+  }
 
-      <div className="mx-auto w-full max-w-7xl space-y-12 px-5 py-8 lg:px-12 lg:py-12">
-        <section className="rounded-[2rem] border border-[#D4AF37]/20 bg-[#D4AF37]/10 p-5 lg:p-6">
-          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+  return (
+    <main className="relative min-h-screen overflow-hidden bg-[#020617] text-white">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,175,55,0.16),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(14,116,144,0.18),transparent_32%)]" />
+      <div className="absolute left-[-10rem] top-24 h-80 w-80 rounded-full bg-cyan-500/10 blur-3xl" />
+      <div className="absolute bottom-[-9rem] right-[-6rem] h-96 w-96 rounded-full bg-[#D4AF37]/10 blur-3xl" />
+
+      <div className="relative mx-auto grid min-h-screen max-w-7xl items-center gap-10 px-5 py-10 lg:grid-cols-[1.05fr_0.95fr] lg:px-10">
+        <section className="hidden rounded-[2.5rem] border border-white/10 bg-white/[0.035] p-10 shadow-2xl shadow-black/30 backdrop-blur-xl lg:block">
+          <div className="flex items-center gap-3 text-[#D4AF37]">
+            <div className="grid h-12 w-12 place-items-center rounded-2xl border border-[#D4AF37]/30 bg-[#D4AF37]/10">
+              <Lighthouse className="h-6 w-6" />
+            </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#D4AF37]/80">Start Here</p>
-              <h2 className="harbor-serif mt-2 text-3xl font-semibold text-[#D4AF37]">Make this household yours first.</h2>
-              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">New users should begin with setup. After that, meals, groceries, calendar, and memories all make sense at a glance.</p>
-            </div>
-            <a className="flex items-center justify-center gap-2 rounded-2xl bg-[#D4AF37] px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-[#B5942B]" href="/onboarding">
-              Start First-Run Setup
-              <ChevronRight className="h-4 w-4" />
-            </a>
-          </div>
-        </section>
-
-        <section aria-label="Primary Harbor actions" className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-          {quickActions.map((action) => {
-            const Icon = action.icon;
-            return (
-              <a className="harbor-glass group rounded-2xl p-6 transition duration-300 hover:-translate-y-1 hover:border-[#D4AF37]/50" href={action.href} key={action.label}>
-                <div className="mb-4 grid h-12 w-12 place-items-center rounded-xl bg-[#D4AF37]/10 transition group-hover:scale-110">
-                  <Icon className="h-6 w-6 text-[#D4AF37]" />
-                </div>
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <h3 className="harbor-serif text-xl font-semibold tracking-wide text-white">{action.label}</h3>
-                    <p className="mt-1 text-sm text-slate-400">{action.description}</p>
-                  </div>
-                  <ChevronRight className="h-5 w-5 text-[#D4AF37]/70" />
-                </div>
-              </a>
-            );
-          })}
-        </section>
-
-        <section className="grid gap-10 lg:grid-cols-3">
-          <div className="lg:col-span-2">
-            <div className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-              <h2 className="harbor-serif text-4xl font-semibold text-[#D4AF37]">Today at a Glance</h2>
-              <span className="text-xs font-bold uppercase tracking-[0.25em] text-slate-500">Launch path</span>
-            </div>
-
-            <div className="relative ml-4 space-y-12 border-l border-white/10 pl-8">
-              {todayItems.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div className="relative" key={item.title}>
-                    <span className="absolute -left-[42px] top-1 z-10 h-[18px] w-[18px] rounded-full border-2 border-[#D4AF37] bg-[#020617]" />
-                    <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                      <div className="flex gap-4">
-                        <div className="hidden h-11 w-11 place-items-center rounded-full border border-[#D4AF37]/25 bg-[#D4AF37]/10 text-[#D4AF37] sm:grid">
-                          <Icon className="h-5 w-5" />
-                        </div>
-                        <div>
-                          <span className="text-xs font-bold uppercase tracking-[0.22em] text-[#D4AF37]">{item.time}</span>
-                          <h4 className="mt-1 text-lg font-semibold text-slate-100">{item.title}</h4>
-                          <p className="text-sm leading-6 text-slate-400">{item.detail}</p>
-                        </div>
-                      </div>
-                      <Clock className="hidden h-5 w-5 text-slate-600 sm:block" />
-                    </div>
-                  </div>
-                );
-              })}
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#D4AF37]/75">Harbor Family Planner</p>
+              <p className="harbor-serif text-2xl font-semibold">Your calm family home base</p>
             </div>
           </div>
 
-          <aside className="space-y-8">
-            <div className="flex items-center justify-between">
-              <h2 className="harbor-serif text-3xl font-semibold text-[#D4AF37]">What&apos;s Next</h2>
-            </div>
-            <div className="space-y-4">
-              {nextItems.map((item) => (
-                <a className={`harbor-glass block rounded-xl border-l-4 p-5 transition hover:bg-white/[0.06] ${item.accent}`} href={item.href} key={`${item.day}-${item.title}`}>
-                  <p className="mb-1 text-xs font-bold uppercase tracking-[0.22em]">{item.day}</p>
-                  <h4 className="text-base font-semibold text-slate-200">{item.title}</h4>
-                  <p className="text-sm text-slate-500">{item.detail}</p>
-                </a>
-              ))}
-            </div>
-
-            <div className="rounded-2xl border border-[#D4AF37]/20 bg-gradient-to-br from-[#D4AF37]/5 to-[#D4AF37]/20 p-6">
-              <Anchor className="mb-4 h-8 w-8 text-[#D4AF37]" />
-              <p className="harbor-serif text-xl italic leading-8 text-slate-300">&quot;A calm home base first. The bigger features sail better after that.&quot;</p>
-            </div>
-          </aside>
-        </section>
-
-        <section>
-          <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#D4AF37]/80">Main Areas</p>
-              <h2 className="harbor-serif text-3xl font-semibold text-white">Everything visible has a path</h2>
-            </div>
-            <a className="text-sm font-bold text-[#D4AF37] hover:text-white" href="/settings">Manage setup</a>
+          <div className="mt-16 max-w-2xl">
+            <p className="text-xs font-bold uppercase tracking-[0.35em] text-cyan-200/70">The porch light is on</p>
+            <h1 className="harbor-serif mt-5 text-6xl font-semibold leading-[0.98] text-white">
+              Welcome home to calmer days.
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
+              Plan meals, gather groceries, keep the family calendar moving, and save the little moments worth remembering.
+            </p>
           </div>
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {routeCards.map((card) => {
-              const Icon = card.icon;
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-3">
+            {[
+              [Sparkles, "Simpler planning", "One clear rhythm for the whole household."],
+              [ShieldCheck, "Private by design", "Your household data stays tied to your account."],
+              [Anchor, "Built to grow", "Recipes, groceries, memories, and more in one harbor."],
+            ].map(([Icon, title, detail]) => {
+              const CardIcon = Icon as typeof Sparkles;
               return (
-                <a className="rounded-3xl border border-white/5 bg-[#010411] p-5 transition hover:border-[#D4AF37]/30 hover:bg-white/[0.03]" href={card.href} key={card.label}>
-                  <Icon className="mb-4 h-6 w-6 text-[#D4AF37]" />
-                  <h3 className="harbor-serif text-2xl font-semibold text-white">{card.label}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-400">{card.description}</p>
-                </a>
+                <div className="rounded-3xl border border-white/8 bg-slate-950/45 p-5" key={title as string}>
+                  <CardIcon className="h-5 w-5 text-[#D4AF37]" />
+                  <h2 className="mt-4 font-semibold text-slate-100">{title as string}</h2>
+                  <p className="mt-2 text-sm leading-6 text-slate-400">{detail as string}</p>
+                </div>
               );
             })}
           </div>
         </section>
+
+        <section className="mx-auto w-full max-w-xl">
+          <div className="mb-8 flex items-center gap-3 lg:hidden">
+            <div className="grid h-11 w-11 place-items-center rounded-2xl border border-[#D4AF37]/30 bg-[#D4AF37]/10 text-[#D4AF37]">
+              <Lighthouse className="h-5 w-5" />
+            </div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#D4AF37]/75">Harbor</p>
+              <p className="harbor-serif text-xl font-semibold">Family Planner</p>
+            </div>
+          </div>
+
+          <div className="rounded-[2rem] border border-white/10 bg-slate-950/70 p-6 shadow-2xl shadow-black/40 backdrop-blur-2xl sm:p-8">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.28em] text-[#D4AF37]/80">Welcome home</p>
+              <h2 className="harbor-serif mt-3 text-4xl font-semibold text-white">
+                {mode === "signin" ? "Come back inside." : "Create your Harbor."}
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-slate-400">
+                {mode === "signin"
+                  ? "Sign in and pick up where your household left off."
+                  : "Start a private home base for your meals, plans, groceries, and memories."}
+              </p>
+            </div>
+
+            <div className="mt-7 grid grid-cols-2 rounded-2xl border border-white/10 bg-white/[0.035] p-1">
+              <button
+                className={`rounded-xl px-4 py-3 text-sm font-bold transition ${mode === "signin" ? "bg-[#D4AF37] text-slate-950" : "text-slate-400 hover:text-white"}`}
+                onClick={() => switchMode("signin")}
+                type="button"
+              >
+                Sign In
+              </button>
+              <button
+                className={`rounded-xl px-4 py-3 text-sm font-bold transition ${mode === "signup" ? "bg-[#D4AF37] text-slate-950" : "text-slate-400 hover:text-white"}`}
+                onClick={() => switchMode("signup")}
+                type="button"
+              >
+                Create Account
+              </button>
+            </div>
+
+            <form className="mt-7 space-y-5" onSubmit={handleSubmit}>
+              <label className="block">
+                <span className="mb-2 block text-xs font-bold uppercase tracking-[0.2em] text-slate-500">Email address</span>
+                <input
+                  autoComplete="email"
+                  className="w-full rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3.5 text-white outline-none transition placeholder:text-slate-600 focus:border-[#D4AF37]/70 focus:ring-2 focus:ring-[#D4AF37]/10"
+                  onChange={(event) => setEmail(event.target.value)}
+                  placeholder="you@example.com"
+                  type="email"
+                  value={email}
+                />
+              </label>
+
+              <label className="block">
+                <span className="mb-2 block text-xs font-bold uppercase tracking-[0.2em] text-slate-500">Password</span>
+                <div className="relative">
+                  <input
+                    autoComplete={mode === "signin" ? "current-password" : "new-password"}
+                    className="w-full rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3.5 pr-12 text-white outline-none transition placeholder:text-slate-600 focus:border-[#D4AF37]/70 focus:ring-2 focus:ring-[#D4AF37]/10"
+                    onChange={(event) => setPassword(event.target.value)}
+                    placeholder="At least 6 characters"
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                  />
+                  <button
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                    className="absolute inset-y-0 right-0 grid w-12 place-items-center text-slate-500 transition hover:text-[#D4AF37]"
+                    onClick={() => setShowPassword((current) => !current)}
+                    type="button"
+                  >
+                    {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                  </button>
+                </div>
+              </label>
+
+              {message ? (
+                <div className={`flex gap-3 rounded-2xl border p-4 text-sm leading-6 ${confirmationSent ? "border-emerald-400/20 bg-emerald-400/10 text-emerald-200" : "border-amber-300/20 bg-amber-300/10 text-amber-200"}`}>
+                  {confirmationSent ? <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0" /> : null}
+                  <p>{message}</p>
+                </div>
+              ) : null}
+
+              <button
+                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#D4AF37] px-5 py-3.5 font-bold text-slate-950 transition hover:bg-[#B5942B] disabled:cursor-not-allowed disabled:opacity-60"
+                disabled={loading}
+                type="submit"
+              >
+                {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : null}
+                {mode === "signin" ? "Enter Harbor" : "Create My Harbor"}
+                {!loading ? <ArrowRight className="h-4 w-4" /> : null}
+              </button>
+            </form>
+
+            <p className="mt-6 text-center text-xs leading-5 text-slate-600">
+              Harbor uses secure email and password authentication through Supabase.
+            </p>
+          </div>
+        </section>
       </div>
-    </HarborShell>
+    </main>
   );
 }
