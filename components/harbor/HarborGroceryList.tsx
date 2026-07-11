@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import HarborNextStep from "@/components/harbor/HarborNextStep";
 import { groceryCategories } from "@/lib/harborStarterData";
-import { getRecipeBySlug } from "@/lib/recipeDetails";
+import { fetchPublishedStarterRecipeBySlug, formatIngredient, getFallbackStarterRecipe, type StarterRecipeIngredient } from "@/lib/starterRecipes";
 import { Beef, Carrot, Coffee, Milk, Package, Plus, PlusCircle, ShoppingBasket, Trash2 } from "lucide-react";
 
 type GroceryItem = {
@@ -53,6 +53,19 @@ function chooseCategory(name: string) {
   return "Pantry";
 }
 
+function groceryCategoryForIngredient(ingredient: StarterRecipeIngredient) {
+  switch (ingredient.groceryCategory) {
+    case "Meat & Protein": return "Proteins";
+    case "Dairy": return "Dairy";
+    case "Produce":
+    case "Frozen": return "Frozen / Produce";
+    case "Bakery":
+    case "Snacks": return "Breakfast / Snacks";
+    case "Pantry": return "Pantry";
+    default: return chooseCategory(ingredient.name);
+  }
+}
+
 export default function HarborGroceryList() {
   const searchParams = useSearchParams();
   const recipeSlug = searchParams.get("recipe");
@@ -61,6 +74,8 @@ export default function HarborGroceryList() {
   const [draftName, setDraftName] = useState("");
   const [draftCategory, setDraftCategory] = useState(categories[0] ?? "Pantry");
   const [message, setMessage] = useState("Your grocery list is ready.");
+  const [storageReady, setStorageReady] = useState(false);
+  const handledRecipeSlugs = useRef(new Set<string>());
 
   useEffect(() => {
     try {
@@ -68,36 +83,58 @@ export default function HarborGroceryList() {
       if (stored) setItems(JSON.parse(stored) as GroceryItem[]);
     } catch {
       setMessage("Saved grocery data could not be loaded. Using the starter list.");
+    } finally {
+      setStorageReady(true);
     }
   }, []);
 
   useEffect(() => {
+    if (!storageReady) return;
     window.localStorage.setItem(storageKey, JSON.stringify(items));
-  }, [items]);
+  }, [items, storageReady]);
 
   useEffect(() => {
-    if (!recipeSlug) return;
-    const recipe = getRecipeBySlug(recipeSlug);
-    if (!recipe?.detail) return;
+    if (!recipeSlug || !storageReady || handledRecipeSlugs.current.has(recipeSlug)) return;
+    handledRecipeSlugs.current.add(recipeSlug);
+    let active = true;
 
-    setItems((current) => {
-      const existingNames = new Set(current.map((item) => item.name.trim().toLowerCase()));
-      const additions = recipe.detail.groceryNotes
-        .filter((name) => !existingNames.has(name.trim().toLowerCase()))
-        .map((name) => ({
-          id: makeId(),
-          name,
-          category: chooseCategory(name),
-          checked: false,
-          source: recipe.title
-        }));
+    async function addRecipeIngredients() {
+      let recipe;
+      try {
+        recipe = await fetchPublishedStarterRecipeBySlug(recipeSlug as string);
+      } catch {
+        recipe = getFallbackStarterRecipe(recipeSlug as string);
+      }
 
-      if (!additions.length) return current;
-      return [...current, ...additions];
-    });
+      if (!active) return;
+      if (!recipe) {
+        setMessage("That published Harbor recipe could not be found.");
+        return;
+      }
 
-    setMessage(`${recipe.title} ingredients were added to the list.`);
-  }, [recipeSlug]);
+      setItems((current) => {
+        const existingNames = new Set(current.map((item) => item.name.trim().toLowerCase()));
+        const additions = recipe.ingredients.flatMap((ingredient) => {
+          const name = formatIngredient(ingredient);
+          if (existingNames.has(name.trim().toLowerCase())) return [];
+          existingNames.add(name.trim().toLowerCase());
+          return [{
+            id: makeId(),
+            name,
+            category: groceryCategoryForIngredient(ingredient),
+            checked: false,
+            source: recipe.title,
+          }];
+        });
+
+        return additions.length ? [...current, ...additions] : current;
+      });
+      setMessage(`${recipe.title} ingredients were added to the list.`);
+    }
+
+    void addRecipeIngredients();
+    return () => { active = false; };
+  }, [recipeSlug, storageReady]);
 
   const visibleItems = useMemo(() => items.filter((item) => {
     if (filter === "Purchased") return item.checked;
