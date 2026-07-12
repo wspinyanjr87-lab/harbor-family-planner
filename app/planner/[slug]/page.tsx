@@ -1,5 +1,6 @@
 import HarborShell from "@/components/harbor/HarborShell";
 import HarborNextStep from "@/components/harbor/HarborNextStep";
+import Image from "next/image";
 import {
   fallbackStarterRecipes,
   fetchPublishedStarterRecipeBySlug,
@@ -35,7 +36,7 @@ export default async function RecipeDetailPage({ params }: { params: { slug: str
   return (
     <HarborShell active="planner">
       <header className="relative h-80 overflow-hidden border-b border-white/5">
-        {recipe.imageUrl ? <img alt={recipe.title} className="h-full w-full object-cover" src={recipe.imageUrl} /> : <div className="h-full bg-gradient-to-br from-slate-900 to-[#D4AF37]/10" />}
+        {recipe.imageUrl ? <Image alt={recipe.title} className="object-cover" fill priority sizes="100vw" src={recipe.imageUrl} /> : <div className="h-full bg-gradient-to-br from-slate-900 to-[#D4AF37]/10" />}
         <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/25 via-[#020617]/55 to-[#020617]" />
         <div className="absolute inset-0 flex flex-col justify-end p-6 lg:p-12">
           <a className="mb-5 flex w-fit items-center gap-2 rounded-full border border-white/10 bg-slate-950/60 px-4 py-2 text-sm font-bold text-slate-300 transition hover:border-[#D4AF37]/40 hover:text-[#D4AF37]" href="/planner"><ArrowLeft className="h-4 w-4" /> Back to Meal Planner</a>

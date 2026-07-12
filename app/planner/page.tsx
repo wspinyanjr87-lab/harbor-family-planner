@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import HarborShell from "@/components/harbor/HarborShell";
 import HarborNextStep from "@/components/harbor/HarborNextStep";
 import HarborCustomRecipes from "@/components/harbor/HarborCustomRecipes";
@@ -92,7 +93,7 @@ export default function PlannerPage() {
                 <article className="harbor-glass group overflow-hidden rounded-3xl" key={recipe.id}>
                   <a className="block" href={`/planner/${recipe.slug}`}>
                     <div className="relative h-48 overflow-hidden bg-slate-900">
-                      {recipe.imageUrl ? <img alt={recipe.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" src={recipe.imageUrl} /> : <div className="grid h-full place-items-center text-[#D4AF37]/60"><BookOpen className="h-10 w-10" /></div>}
+                      {recipe.imageUrl ? <Image alt={recipe.title} className="object-cover transition duration-500 group-hover:scale-105" fill sizes="(min-width: 1280px) 30vw, (min-width: 768px) 50vw, 100vw" src={recipe.imageUrl} /> : <div className="grid h-full place-items-center text-[#D4AF37]/60"><BookOpen className="h-10 w-10" /></div>}
                       <span className="absolute left-3 top-3 rounded-lg border border-[#D4AF37]/40 bg-slate-950/80 px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-[#D4AF37]">{recipe.category}</span>
                     </div>
                   </a>
