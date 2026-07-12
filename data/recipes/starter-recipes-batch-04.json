@@ -1,0 +1,255 @@
+[
+  {
+    "title": "Lemon Bread", "slug": "lemon-bread", "category": "Bakery",
+    "description": "A bright, moist lemon loaf finished with a simple citrus glaze for breakfast, dessert, or an afternoon treat.",
+    "servings": 10, "prepMinutes": 15, "cookMinutes": 50, "difficulty": "Easy", "budgetLevel": "$",
+    "ingredients": [
+      { "name": "all-purpose flour", "quantity": 1.75, "unit": "cups", "groceryCategory": "Pantry" },
+      { "name": "granulated sugar", "quantity": 1, "unit": "cup", "groceryCategory": "Pantry" },
+      { "name": "butter", "quantity": 0.5, "unit": "cup", "groceryCategory": "Dairy" },
+      { "name": "large eggs", "quantity": 2, "unit": "whole", "groceryCategory": "Dairy" },
+      { "name": "milk", "quantity": 0.5, "unit": "cup", "groceryCategory": "Dairy" },
+      { "name": "fresh lemon juice", "quantity": 0.25, "unit": "cup", "groceryCategory": "Produce" },
+      { "name": "lemon zest", "quantity": 1, "unit": "tbsp", "groceryCategory": "Produce" },
+      { "name": "baking powder", "quantity": 1.5, "unit": "tsp", "groceryCategory": "Pantry" },
+      { "name": "powdered sugar", "quantity": 1, "unit": "cup", "groceryCategory": "Pantry" }
+    ],
+    "steps": ["Heat the oven to 350°F and grease a 9-by-5-inch loaf pan.", "Cream the butter and sugar, then beat in the eggs one at a time.", "Whisk the flour, baking powder, and salt separately, then add them alternately with the milk.", "Stir in 2 tablespoons lemon juice and the zest, spread the batter in the pan, and bake for 45 to 50 minutes.", "Cool the loaf, then drizzle it with powdered sugar whisked with the remaining lemon juice."],
+    "tags": ["Citrus", "Quick Bread", "Brunch", "Budget Baking"], "imageUrl": "/recipes/lemon-bread.png", "isPublished": true, "sortOrder": 16
+  },
+  {
+    "title": "Blueberry Muffins", "slug": "blueberry-muffins", "category": "Bakery",
+    "description": "Soft, fluffy muffins bursting with blueberries and finished with a lightly crisp bakery-style top.",
+    "servings": 12, "prepMinutes": 15, "cookMinutes": 22, "difficulty": "Easy", "budgetLevel": "$",
+    "ingredients": [
+      { "name": "all-purpose flour", "quantity": 2, "unit": "cups", "groceryCategory": "Pantry" },
+      { "name": "granulated sugar", "quantity": 0.75, "unit": "cup", "groceryCategory": "Pantry" },
+      { "name": "butter", "quantity": 0.5, "unit": "cup", "groceryCategory": "Dairy" },
+      { "name": "large eggs", "quantity": 2, "unit": "whole", "groceryCategory": "Dairy" },
+      { "name": "milk", "quantity": 1, "unit": "cup", "groceryCategory": "Dairy" },
+      { "name": "fresh or frozen blueberries", "quantity": 1.5, "unit": "cups", "groceryCategory": "Produce" },
+      { "name": "baking powder", "quantity": 2, "unit": "tsp", "groceryCategory": "Pantry" },
+      { "name": "vanilla extract", "quantity": 1, "unit": "tsp", "groceryCategory": "Pantry" }
+    ],
+    "steps": ["Heat the oven to 375°F and line a 12-cup muffin pan.", "Whisk the flour, baking powder, and salt in a bowl.", "Whisk the melted butter, sugar, eggs, milk, and vanilla in another bowl.", "Stir the wet mixture into the dry ingredients just until combined, then fold in the blueberries.", "Divide the batter among the cups and bake for 18 to 22 minutes until golden."],
+    "tags": ["Muffins", "Breakfast", "Freezer Friendly", "Kid Friendly"], "imageUrl": "/recipes/blueberry-muffins.png", "isPublished": true, "sortOrder": 17
+  },
+  {
+    "title": "Cinnamon Rolls", "slug": "cinnamon-rolls", "category": "Bakery",
+    "description": "Soft homemade rolls swirled with buttery cinnamon sugar and topped with a smooth vanilla glaze.",
+    "servings": 12, "prepMinutes": 30, "cookMinutes": 25, "difficulty": "Medium", "budgetLevel": "$",
+    "ingredients": [
+      { "name": "all-purpose flour", "quantity": 4, "unit": "cups", "groceryCategory": "Pantry" },
+      { "name": "active dry yeast", "quantity": 2.25, "unit": "tsp", "groceryCategory": "Pantry" },
+      { "name": "milk", "quantity": 1, "unit": "cup", "groceryCategory": "Dairy" },
+      { "name": "butter", "quantity": 0.75, "unit": "cup", "groceryCategory": "Dairy" },
+      { "name": "large eggs", "quantity": 2, "unit": "whole", "groceryCategory": "Dairy" },
+      { "name": "brown sugar", "quantity": 1, "unit": "cup", "groceryCategory": "Pantry" },
+      { "name": "ground cinnamon", "quantity": 2, "unit": "tbsp", "groceryCategory": "Pantry" },
+      { "name": "powdered sugar", "quantity": 1.5, "unit": "cups", "groceryCategory": "Pantry" },
+      { "name": "vanilla extract", "quantity": 1, "unit": "tsp", "groceryCategory": "Pantry" }
+    ],
+    "steps": ["Warm the milk, stir in the yeast and a pinch of sugar, and let it foam for 5 minutes.", "Mix in 0.25 cup melted butter, the eggs, and flour to form a soft dough; knead until smooth and let rise until doubled.", "Roll the dough into a rectangle and spread with 0.25 cup softened butter, brown sugar, and cinnamon.", "Roll up tightly, cut into 12 pieces, place in a greased pan, and let rise for 30 minutes.", "Bake at 350°F for 22 to 25 minutes, then glaze with powdered sugar, vanilla, and enough milk to drizzle."],
+    "tags": ["Cinnamon", "Weekend Baking", "Brunch", "Make Ahead"], "imageUrl": "/recipes/cinnamon-rolls.png", "isPublished": true, "sortOrder": 18
+  },
+  {
+    "title": "Chicken Bacon Ranch Wrap", "slug": "chicken-bacon-ranch-wrap", "category": "Lunch",
+    "description": "A hearty wrap packed with chicken, crisp bacon, lettuce, tomato, cheddar, and creamy ranch.",
+    "servings": 4, "prepMinutes": 15, "cookMinutes": 10, "difficulty": "Easy", "budgetLevel": "$$",
+    "ingredients": [
+      { "name": "cooked chicken", "quantity": 2, "unit": "cups", "groceryCategory": "Meat & Protein" },
+      { "name": "bacon", "quantity": 8, "unit": "slices", "groceryCategory": "Meat & Protein" },
+      { "name": "flour tortillas", "quantity": 4, "unit": "large", "groceryCategory": "Bakery" },
+      { "name": "romaine lettuce", "quantity": 2, "unit": "cups", "groceryCategory": "Produce" },
+      { "name": "tomatoes", "quantity": 2, "unit": "whole", "groceryCategory": "Produce" },
+      { "name": "shredded cheddar", "quantity": 1, "unit": "cup", "groceryCategory": "Dairy" },
+      { "name": "ranch dressing", "quantity": 0.5, "unit": "cup", "groceryCategory": "Dairy" }
+    ],
+    "steps": ["Cook the bacon until crisp, drain it, and crumble or chop it.", "Warm the tortillas briefly so they fold easily.", "Layer each tortilla with lettuce, chicken, bacon, tomato, cheddar, and ranch.", "Fold in the sides and roll each tortilla tightly.", "Slice the wraps in half and serve immediately or chill for lunchboxes."],
+    "tags": ["Quick Lunch", "Wrap", "Leftover Chicken", "Lunchbox"], "imageUrl": "/recipes/chicken-bacon-ranch-wrap.png", "isPublished": true, "sortOrder": 19
+  },
+  {
+    "title": "BBQ Pulled Pork Sandwich", "slug": "bbq-pulled-pork-sandwich", "category": "Lunch",
+    "description": "Tender barbecue pulled pork piled on toasted buns with crunchy coleslaw for an easy crowd-pleasing meal.",
+    "servings": 8, "prepMinutes": 15, "cookMinutes": 360, "difficulty": "Easy", "budgetLevel": "$$",
+    "ingredients": [
+      { "name": "boneless pork shoulder", "quantity": 3, "unit": "lb", "groceryCategory": "Meat & Protein" },
+      { "name": "barbecue sauce", "quantity": 2, "unit": "cups", "groceryCategory": "Pantry" },
+      { "name": "chicken broth", "quantity": 0.5, "unit": "cup", "groceryCategory": "Pantry" },
+      { "name": "brown sugar", "quantity": 2, "unit": "tbsp", "groceryCategory": "Pantry" },
+      { "name": "smoked paprika", "quantity": 2, "unit": "tsp", "groceryCategory": "Pantry" },
+      { "name": "hamburger buns", "quantity": 8, "unit": "whole", "groceryCategory": "Bakery" },
+      { "name": "prepared coleslaw", "quantity": 3, "unit": "cups", "groceryCategory": "Produce" },
+      { "name": "pickle slices", "quantity": 1, "unit": "cup", "groceryCategory": "Pantry", "optional": true }
+    ],
+    "steps": ["Season the pork with brown sugar, paprika, salt, and pepper.", "Place it in a slow cooker with the broth and 1 cup barbecue sauce.", "Cover and cook on low for 7 to 8 hours or high for 4 to 5 hours until fork-tender.", "Shred the pork, discard excess fat, and stir in the remaining barbecue sauce.", "Pile the pork onto toasted buns and top with coleslaw and pickles."],
+    "tags": ["Slow Cooker", "BBQ", "Crowd Pleaser", "Make Ahead"], "imageUrl": "/recipes/bbq-pulled-pork-sandwich.png", "isPublished": true, "sortOrder": 20
+  },
+  {
+    "title": "Tomato Basil Soup and Grilled Cheese", "slug": "tomato-basil-soup-and-grilled-cheese", "category": "Lunch",
+    "description": "Creamy tomato basil soup paired with crisp, melty grilled cheese sandwiches for classic family comfort.",
+    "servings": 6, "prepMinutes": 15, "cookMinutes": 30, "difficulty": "Easy", "budgetLevel": "$",
+    "ingredients": [
+      { "name": "crushed tomatoes", "quantity": 2, "unit": "28 oz cans", "groceryCategory": "Pantry" },
+      { "name": "yellow onion", "quantity": 1, "unit": "whole", "groceryCategory": "Produce" },
+      { "name": "garlic cloves", "quantity": 3, "unit": "whole", "groceryCategory": "Produce" },
+      { "name": "vegetable broth", "quantity": 3, "unit": "cups", "groceryCategory": "Pantry" },
+      { "name": "fresh basil", "quantity": 0.5, "unit": "cup", "groceryCategory": "Produce" },
+      { "name": "heavy cream", "quantity": 0.5, "unit": "cup", "groceryCategory": "Dairy" },
+      { "name": "sandwich bread", "quantity": 12, "unit": "slices", "groceryCategory": "Bakery" },
+      { "name": "cheddar cheese", "quantity": 12, "unit": "slices", "groceryCategory": "Dairy" },
+      { "name": "butter", "quantity": 4, "unit": "tbsp", "groceryCategory": "Dairy" }
+    ],
+    "steps": ["Cook the diced onion in 1 tablespoon butter until soft, then add the garlic for 30 seconds.", "Add the tomatoes and broth and simmer for 20 minutes.", "Blend the soup until smooth, stir in the basil and cream, and season to taste.", "Butter the bread, fill with cheddar, and cook the sandwiches in a skillet until golden and melted.", "Serve each bowl of soup with a hot grilled cheese sandwich."],
+    "tags": ["Soup", "Grilled Cheese", "Comfort Food", "Budget"], "imageUrl": "/recipes/tomato-basil-soup-and-grilled-cheese.png", "isPublished": true, "sortOrder": 21
+  },
+  {
+    "title": "Southwest Chicken Burrito Bowl", "slug": "southwest-chicken-burrito-bowl", "category": "Dinner",
+    "description": "A colorful chicken and rice bowl loaded with black beans, corn, tomatoes, cheddar, avocado, and lime.",
+    "servings": 6, "prepMinutes": 20, "cookMinutes": 25, "difficulty": "Easy", "budgetLevel": "$$",
+    "ingredients": [
+      { "name": "boneless skinless chicken breasts", "quantity": 1.5, "unit": "lb", "groceryCategory": "Meat & Protein" },
+      { "name": "white rice", "quantity": 2, "unit": "cups", "groceryCategory": "Pantry" },
+      { "name": "black beans", "quantity": 1, "unit": "15 oz can", "groceryCategory": "Pantry" },
+      { "name": "corn", "quantity": 1, "unit": "15 oz can", "groceryCategory": "Pantry" },
+      { "name": "diced tomatoes", "quantity": 2, "unit": "cups", "groceryCategory": "Produce" },
+      { "name": "shredded cheddar", "quantity": 1.5, "unit": "cups", "groceryCategory": "Dairy" },
+      { "name": "avocados", "quantity": 2, "unit": "whole", "groceryCategory": "Produce" },
+      { "name": "sour cream", "quantity": 1, "unit": "cup", "groceryCategory": "Dairy" },
+      { "name": "taco seasoning", "quantity": 2, "unit": "tbsp", "groceryCategory": "Pantry" },
+      { "name": "limes", "quantity": 2, "unit": "whole", "groceryCategory": "Produce" }
+    ],
+    "steps": ["Cook the rice according to the package directions.", "Coat the chicken with taco seasoning and cook in a skillet until browned and cooked through, then slice it.", "Drain and rinse the beans and corn and warm them together.", "Divide rice among bowls and arrange the chicken, beans, corn, tomatoes, cheddar, avocado, and sour cream on top.", "Finish each bowl with fresh lime juice and serve."],
+    "tags": ["Burrito Bowl", "Meal Prep", "Southwest", "Family Dinner"], "imageUrl": "/recipes/southwest-chicken-burrito-bowl.png", "isPublished": true, "sortOrder": 22
+  },
+  {
+    "title": "Cheesy Loaded Nachos", "slug": "cheesy-loaded-nachos", "category": "Munchies",
+    "description": "Crisp tortilla chips loaded with seasoned beef, beans, melted cheese, tomatoes, olives, jalapeños, and sour cream.",
+    "servings": 8, "prepMinutes": 15, "cookMinutes": 15, "difficulty": "Easy", "budgetLevel": "$$",
+    "ingredients": [
+      { "name": "tortilla chips", "quantity": 12, "unit": "oz", "groceryCategory": "Snacks" },
+      { "name": "ground beef", "quantity": 1, "unit": "lb", "groceryCategory": "Meat & Protein" },
+      { "name": "taco seasoning", "quantity": 2, "unit": "tbsp", "groceryCategory": "Pantry" },
+      { "name": "black beans", "quantity": 1, "unit": "15 oz can", "groceryCategory": "Pantry" },
+      { "name": "shredded cheddar", "quantity": 3, "unit": "cups", "groceryCategory": "Dairy" },
+      { "name": "diced tomatoes", "quantity": 1.5, "unit": "cups", "groceryCategory": "Produce" },
+      { "name": "sliced black olives", "quantity": 0.5, "unit": "cup", "groceryCategory": "Pantry" },
+      { "name": "sliced jalapeños", "quantity": 0.25, "unit": "cup", "groceryCategory": "Produce", "optional": true },
+      { "name": "sour cream", "quantity": 1, "unit": "cup", "groceryCategory": "Dairy" }
+    ],
+    "steps": ["Heat the oven to 400°F and line a sheet pan.", "Brown the beef, drain it, and stir in the taco seasoning.", "Spread the chips on the pan and layer with beef, beans, and cheddar.", "Bake for 8 to 10 minutes until the cheese is melted.", "Top with tomatoes, olives, jalapeños, and spoonfuls of sour cream before serving."],
+    "tags": ["Game Night", "Party Food", "Nachos", "Shareable"], "imageUrl": "/recipes/cheesy-loaded-nachos.png", "isPublished": true, "sortOrder": 23
+  },
+  {
+    "title": "Cinnamon Sugar Donut Holes", "slug": "cinnamon-sugar-donut-holes", "category": "Munchies",
+    "description": "Bite-size baked donut holes tossed in buttery cinnamon sugar for an easy family treat.",
+    "servings": 24, "prepMinutes": 15, "cookMinutes": 12, "difficulty": "Easy", "budgetLevel": "$",
+    "ingredients": [
+      { "name": "all-purpose flour", "quantity": 2, "unit": "cups", "groceryCategory": "Pantry" },
+      { "name": "granulated sugar", "quantity": 0.75, "unit": "cup", "groceryCategory": "Pantry" },
+      { "name": "baking powder", "quantity": 2, "unit": "tsp", "groceryCategory": "Pantry" },
+      { "name": "ground cinnamon", "quantity": 2, "unit": "tsp", "groceryCategory": "Pantry" },
+      { "name": "milk", "quantity": 0.75, "unit": "cup", "groceryCategory": "Dairy" },
+      { "name": "large egg", "quantity": 1, "unit": "whole", "groceryCategory": "Dairy" },
+      { "name": "butter", "quantity": 0.5, "unit": "cup", "groceryCategory": "Dairy" },
+      { "name": "vanilla extract", "quantity": 1, "unit": "tsp", "groceryCategory": "Pantry" }
+    ],
+    "steps": ["Heat the oven to 375°F and grease a mini muffin pan.", "Whisk the flour, baking powder, 0.25 cup sugar, 1 teaspoon cinnamon, and salt.", "Stir in the milk, egg, 0.25 cup melted butter, and vanilla just until combined.", "Fill the pan and bake for 10 to 12 minutes until lightly golden.", "Brush the warm donut holes with remaining melted butter and roll them in the remaining cinnamon sugar."],
+    "tags": ["Cinnamon Sugar", "Baked Treat", "Kid Friendly", "Party Snack"], "imageUrl": "/recipes/cinnamon-sugar-donut-holes.png", "isPublished": true, "sortOrder": 24
+  },
+  {
+    "title": "Caramel Popcorn Mix", "slug": "caramel-popcorn-mix", "category": "Munchies",
+    "description": "Crunchy caramel popcorn mixed with pretzels and chocolate chips for a sweet-and-salty movie-night snack.",
+    "servings": 10, "prepMinutes": 10, "cookMinutes": 45, "difficulty": "Easy", "budgetLevel": "$",
+    "ingredients": [
+      { "name": "popped popcorn", "quantity": 10, "unit": "cups", "groceryCategory": "Snacks" },
+      { "name": "mini pretzels", "quantity": 2, "unit": "cups", "groceryCategory": "Snacks" },
+      { "name": "brown sugar", "quantity": 1, "unit": "cup", "groceryCategory": "Pantry" },
+      { "name": "butter", "quantity": 0.5, "unit": "cup", "groceryCategory": "Dairy" },
+      { "name": "light corn syrup", "quantity": 0.25, "unit": "cup", "groceryCategory": "Pantry" },
+      { "name": "baking soda", "quantity": 0.5, "unit": "tsp", "groceryCategory": "Pantry" },
+      { "name": "chocolate chips", "quantity": 1, "unit": "cup", "groceryCategory": "Snacks" }
+    ],
+    "steps": ["Heat the oven to 250°F and combine the popcorn and pretzels in a large roasting pan.", "Boil the brown sugar, butter, and corn syrup for 4 minutes without stirring.", "Remove from heat, stir in the baking soda and a pinch of salt, and pour over the popcorn mixture.", "Bake for 40 minutes, stirring every 10 minutes, then spread on parchment to cool.", "Mix in the chocolate chips once the caramel popcorn is completely cool."],
+    "tags": ["Movie Night", "Sweet and Salty", "Popcorn", "Party Mix"], "imageUrl": "/recipes/caramel-popcorn-mix.png", "isPublished": true, "sortOrder": 25
+  },
+  {
+    "title": "S'mores Dip", "slug": "smores-dip", "category": "Munchies",
+    "description": "Warm melted chocolate topped with toasted marshmallows and served with graham crackers for dipping.",
+    "servings": 8, "prepMinutes": 5, "cookMinutes": 8, "difficulty": "Easy", "budgetLevel": "$",
+    "ingredients": [
+      { "name": "chocolate chips", "quantity": 2, "unit": "cups", "groceryCategory": "Snacks" },
+      { "name": "mini marshmallows", "quantity": 3, "unit": "cups", "groceryCategory": "Snacks" },
+      { "name": "graham crackers", "quantity": 12, "unit": "whole", "groceryCategory": "Snacks" },
+      { "name": "butter", "quantity": 1, "unit": "tbsp", "groceryCategory": "Dairy" }
+    ],
+    "steps": ["Heat the oven to 400°F and butter a small oven-safe skillet or baking dish.", "Spread the chocolate chips evenly in the dish.", "Cover the chocolate with the marshmallows in a single thick layer.", "Bake for 6 to 8 minutes until the chocolate is soft and the marshmallows are toasted.", "Serve immediately with graham crackers for dipping."],
+    "tags": ["S'mores", "Shareable", "Chocolate", "Quick Dessert"], "imageUrl": "/recipes/smores-dip.png", "isPublished": true, "sortOrder": 26
+  },
+  {
+    "title": "Harbor Breakfast Biscuits and Gravy", "slug": "harbor-breakfast-biscuits-and-gravy", "category": "Breakfast",
+    "description": "Fluffy biscuits covered in creamy sausage gravy for a hearty, comforting family breakfast.",
+    "servings": 8, "prepMinutes": 20, "cookMinutes": 30, "difficulty": "Medium", "budgetLevel": "$$",
+    "ingredients": [
+      { "name": "all-purpose flour", "quantity": 3, "unit": "cups", "groceryCategory": "Pantry" },
+      { "name": "baking powder", "quantity": 1, "unit": "tbsp", "groceryCategory": "Pantry" },
+      { "name": "butter", "quantity": 0.5, "unit": "cup", "groceryCategory": "Dairy" },
+      { "name": "milk", "quantity": 3.5, "unit": "cups", "groceryCategory": "Dairy" },
+      { "name": "breakfast sausage", "quantity": 1, "unit": "lb", "groceryCategory": "Meat & Protein" },
+      { "name": "black pepper", "quantity": 1, "unit": "tsp", "groceryCategory": "Pantry" }
+    ],
+    "steps": ["Heat the oven to 425°F and line a baking sheet.", "Mix 2 cups flour, baking powder, and salt; cut in cold butter and stir in 1 cup milk to form biscuit dough.", "Pat out the dough, cut 8 biscuits, and bake for 12 to 15 minutes.", "Brown the sausage in a skillet, stir in the remaining flour, and cook for 1 minute.", "Slowly add the remaining milk, simmer until thick, season with black pepper, and spoon over split biscuits."],
+    "tags": ["Biscuits and Gravy", "Hearty Breakfast", "Southern Style", "Weekend"], "imageUrl": "/recipes/harbor-breakfast-biscuits-and-gravy.png", "isPublished": true, "sortOrder": 27
+  },
+  {
+    "title": "Shepherd's Pie", "slug": "shepherds-pie", "category": "Dinner",
+    "description": "Savory beef and vegetables under a golden layer of creamy mashed potatoes for homestyle comfort.",
+    "servings": 8, "prepMinutes": 25, "cookMinutes": 40, "difficulty": "Medium", "budgetLevel": "$$",
+    "ingredients": [
+      { "name": "ground beef", "quantity": 1.5, "unit": "lb", "groceryCategory": "Meat & Protein" },
+      { "name": "russet potatoes", "quantity": 3, "unit": "lb", "groceryCategory": "Produce" },
+      { "name": "yellow onion", "quantity": 1, "unit": "whole", "groceryCategory": "Produce" },
+      { "name": "carrots", "quantity": 2, "unit": "whole", "groceryCategory": "Produce" },
+      { "name": "frozen peas", "quantity": 1.5, "unit": "cups", "groceryCategory": "Frozen" },
+      { "name": "beef broth", "quantity": 1.5, "unit": "cups", "groceryCategory": "Pantry" },
+      { "name": "tomato paste", "quantity": 2, "unit": "tbsp", "groceryCategory": "Pantry" },
+      { "name": "butter", "quantity": 4, "unit": "tbsp", "groceryCategory": "Dairy" },
+      { "name": "milk", "quantity": 0.5, "unit": "cup", "groceryCategory": "Dairy" }
+    ],
+    "steps": ["Boil the peeled potatoes until tender, then mash with butter, milk, salt, and pepper.", "Brown the beef with the diced onion and carrots and drain excess fat.", "Stir in tomato paste and broth and simmer until thickened, then fold in the peas.", "Spread the beef mixture in a baking dish and cover evenly with mashed potatoes.", "Bake at 400°F for 25 to 30 minutes until bubbling and golden on top."],
+    "tags": ["Comfort Food", "Casserole", "Homestyle", "Make Ahead"], "imageUrl": "/recipes/shepherds-pie.png", "isPublished": true, "sortOrder": 28
+  },
+  {
+    "title": "Chicken Alfredo", "slug": "chicken-alfredo", "category": "Dinner",
+    "description": "Tender chicken and pasta coated in a creamy Parmesan Alfredo sauce for a comforting family favorite.",
+    "servings": 6, "prepMinutes": 15, "cookMinutes": 25, "difficulty": "Easy", "budgetLevel": "$$",
+    "ingredients": [
+      { "name": "boneless skinless chicken breasts", "quantity": 1.5, "unit": "lb", "groceryCategory": "Meat & Protein" },
+      { "name": "fettuccine", "quantity": 12, "unit": "oz", "groceryCategory": "Pantry" },
+      { "name": "butter", "quantity": 4, "unit": "tbsp", "groceryCategory": "Dairy" },
+      { "name": "garlic cloves", "quantity": 3, "unit": "whole", "groceryCategory": "Produce" },
+      { "name": "heavy cream", "quantity": 2, "unit": "cups", "groceryCategory": "Dairy" },
+      { "name": "grated Parmesan", "quantity": 1.5, "unit": "cups", "groceryCategory": "Dairy" },
+      { "name": "chopped parsley", "quantity": 2, "unit": "tbsp", "groceryCategory": "Produce", "optional": true }
+    ],
+    "steps": ["Cook the fettuccine until al dente, reserving 1 cup pasta water before draining.", "Season the chicken and cook it in a large skillet until browned and cooked through, then rest and slice it.", "Melt the butter in the skillet and cook the minced garlic for 30 seconds.", "Add the cream and simmer gently for 3 minutes, then whisk in the Parmesan until smooth.", "Toss in the pasta, loosen with reserved pasta water as needed, and top with chicken and parsley."],
+    "tags": ["Pasta Night", "Creamy", "Family Favorite", "30 Minute Meal"], "imageUrl": "/recipes/chicken-alfredo.png", "isPublished": true, "sortOrder": 29
+  },
+  {
+    "title": "Lemon Herb Salmon", "slug": "lemon-herb-salmon", "category": "Dinner",
+    "description": "Oven-roasted salmon with lemon, garlic, and herbs served alongside colorful roasted vegetables.",
+    "servings": 6, "prepMinutes": 15, "cookMinutes": 20, "difficulty": "Easy", "budgetLevel": "$$$",
+    "ingredients": [
+      { "name": "salmon fillet", "quantity": 2, "unit": "lb", "groceryCategory": "Meat & Protein" },
+      { "name": "lemons", "quantity": 2, "unit": "whole", "groceryCategory": "Produce" },
+      { "name": "garlic cloves", "quantity": 3, "unit": "whole", "groceryCategory": "Produce" },
+      { "name": "olive oil", "quantity": 3, "unit": "tbsp", "groceryCategory": "Pantry" },
+      { "name": "dried Italian herbs", "quantity": 2, "unit": "tsp", "groceryCategory": "Pantry" },
+      { "name": "asparagus", "quantity": 1, "unit": "lb", "groceryCategory": "Produce" },
+      { "name": "broccoli florets", "quantity": 3, "unit": "cups", "groceryCategory": "Produce" },
+      { "name": "bell peppers", "quantity": 2, "unit": "whole", "groceryCategory": "Produce" }
+    ],
+    "steps": ["Heat the oven to 425°F and line a large sheet pan.", "Toss the asparagus, broccoli, and peppers with 1 tablespoon olive oil, salt, and pepper and roast for 8 minutes.", "Place the salmon on the pan and rub it with the remaining oil, minced garlic, herbs, lemon zest, salt, and pepper.", "Top with lemon slices and roast everything for 12 to 15 minutes until the salmon flakes easily.", "Finish with fresh lemon juice and serve with the roasted vegetables."],
+    "tags": ["Seafood", "Sheet Pan", "Lemon Herb", "Healthy Dinner"], "imageUrl": "/recipes/lemon-herb-salmon.png", "isPublished": true, "sortOrder": 30
+  }
+]

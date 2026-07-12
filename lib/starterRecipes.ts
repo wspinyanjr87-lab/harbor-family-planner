@@ -1,5 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
-import fallbackRows from "@/data/recipes/starter-recipes.json";
+import starterRows from "@/data/recipes/starter-recipes.json";
+import batch04Rows from "@/data/recipes/starter-recipes-batch-04.json";
+
+const fallbackRows = [...starterRows, ...batch04Rows];
 
 export const starterRecipeCategories = ["Breakfast", "Lunch", "Dinner", "Bakery", "Munchies"] as const;
 
