@@ -1,4 +1,4 @@
-# Harbor Meal Planner Launch Checklist
+﻿# Harbor Meal Planner Launch Checklist
 
 Status: **pre-live branch checklist**
 
@@ -26,7 +26,7 @@ npm run build
 Use:
 
 ```text
-Repository: wspinyanjr87-lab/Harbor-Public
+Repository: wspinyanjr87-lab/Harbor-Family-Planner
 Branch: meal-planner
 Framework: Next.js
 Build command: npm run build
@@ -97,3 +97,4 @@ STRIPE_WEBHOOK_SECRET=
 2. Fix any UI breakage.
 3. Decide whether to merge `meal-planner` into `main`.
 4. Only after that, plan Harbor Supabase setup.
+

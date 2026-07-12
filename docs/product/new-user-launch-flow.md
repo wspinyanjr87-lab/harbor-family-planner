@@ -1,4 +1,4 @@
-# Harbor New User Launch Flow
+﻿# Harbor New User Launch Flow
 
 Status: front-end launch flow in progress on `meal-planner`.
 
@@ -9,7 +9,7 @@ A brand-new Harbor user should be able to understand the app without knowing Gra
 The first-use path should be simple:
 
 ```text
-Welcome → Add People → Pick Household Rhythm → Create First Week → Use Harbor Home
+Welcome â†’ Add People â†’ Pick Household Rhythm â†’ Create First Week â†’ Use Harbor Home
 ```
 
 ## Current Routes
@@ -128,3 +128,4 @@ Priority order:
 2. Replace demo data and empty states.
 3. Wire backend persistence.
 4. Then polish mobile navigation and responsive layouts.
+

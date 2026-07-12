@@ -1,4 +1,4 @@
-# Contributing to Harbor Public
+﻿# Contributing to Harbor Public
 
 Harbor Public is the public-safe product layer for Harbor Family Planner / Harbor Family HQ.
 
@@ -100,3 +100,4 @@ Harbor must get its own future Supabase project and schema. Do not reuse Grace-H
 ## Questions
 
 When unsure whether something belongs here, treat it as private until confirmed public-safe.
+

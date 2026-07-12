@@ -1,16 +1,18 @@
-# Harbor Family HQ
+﻿# Harbor Family Planner
 
-A premium dark navy and champagne gold family command center for meals, groceries, schedules, memories, and household rhythm.
+Harbor Family Planner is an independent Harbor product repository for family meal planning, grocery planning, recipes, calendar rhythm, memories, and household setup.
 
-Harbor is the public-safe family planner product layer. It is **not** Grace-HQ, not the private Grace source brain, and not an internal command system.
+This repository owns its own product code, deployment boundary, data boundary, workflow, and release cycle.
 
-## Current Product
+## Portfolio Position
 
 ```text
-Harbor Family HQ / Harbor Family Planner Lite
+Watcher-Research -> Grace-HQ -> Harbor-HQ -> Harbor-Family-Planner
 ```
 
-The production app now lives on `main`. The `Harbor-Family-Planner` branch remains the working app branch.
+- `Harbor-HQ` is the Harbor business portfolio headquarters.
+- `Harbor-Family-Planner` is the standalone family planner product.
+- Private Grace data, family memory, credentials, and internal automation do not belong in this repository.
 
 ## What Is Implemented
 
@@ -21,18 +23,9 @@ The production app now lives on `main`. The `Harbor-Family-Planner` branch remai
 | `/planner` | Meal planner / recipe browser | Implemented |
 | `/grocery` | Grocery list builder | Implemented |
 | `/memories` | Memory gallery | Implemented |
+| `/settings` | Setup Center | Implemented |
 | `/api/status` | Starter/live mode status | Implemented |
-
-The previous Superdesign static HTML concepts have been translated into real React/Next pages using the existing app stack.
-
-## Core Features
-
-- Harbor Home with welcome banner, quick actions, today's rhythm, what's next, meal/grocery/memory snapshots
-- Calendar with month grid, event color legend, today's agenda, and household availability status
-- Meal Planner with recipe cards, search/filter shell, weekly table, ingredients, and chef's tip panel
-- Grocery List with categorized items, purchased state styling, estimated total, stock level, add-item panel, and quick suggestion
-- Memories with coastal banner, filters, add-memory action, and hover-reveal gallery cards
-- Shared Harbor shell for sidebar navigation, mobile header, account panel, faith anchor card, and verse footer
+| `/api/setup` | Setup save/load API | Implemented |
 
 ## Local Run
 
@@ -41,16 +34,30 @@ npm install
 npm run dev
 ```
 
-## Vercel Setup
+## Build Check
 
-```text
-Repository: wspinyanjr87-lab/Harbor-Public
-Production branch: main
-Framework: Next.js
-Root directory: leave blank
-Install command: npm install
-Build command: npm run build
-Output directory: leave default
+```bash
+npm install
+npm run build
 ```
 
-See `docs/deployment/vercel-production.md` for troubleshooting.
+## Deployment Boundary
+
+The Vercel project for this product should connect to:
+
+```text
+Repository: wspinyanjr87-lab/Harbor-Family-Planner
+Branch: main
+Framework: Next.js
+Install command: npm install
+Build command: npm run build
+Output directory: default
+```
+
+## Safety
+
+- Do not add Grace-HQ private source data.
+- Do not add Watcher-Research scouting data.
+- Do not commit credentials, API keys, Supabase service keys, Stripe keys, OpenAI keys, family memory, or private browser data.
+- Keep product work public-safe and product-owned.
+

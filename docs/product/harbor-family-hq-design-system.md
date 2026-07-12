@@ -1,4 +1,4 @@
-# Harbor Family HQ Design System
+﻿# Harbor Family HQ Design System
 
 Status: active design direction for the `meal-planner` branch.
 
@@ -159,3 +159,4 @@ Harbor's codebase uses:
 - Vercel/GitHub Actions build checks
 
 So imported Superdesign concepts should be translated into React components and app routes, not pasted as raw HTML pages.
+

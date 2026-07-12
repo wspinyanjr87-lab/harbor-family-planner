@@ -1,4 +1,4 @@
-# Harbor Friend Sample Test
+﻿# Harbor Friend Sample Test
 
 Use this when giving Harbor to a friend for a first click-through test.
 
@@ -54,3 +54,4 @@ Ask them to answer these without you explaining the app first:
 - Billing: placeholder
 - Database: disabled until Harbor storage is connected
 - AI planner: disabled until usage rules exist
+

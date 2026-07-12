@@ -1,4 +1,4 @@
-# Harbor Supabase Setup
+﻿# Harbor Supabase Setup
 
 Harbor is prepared for Supabase, but it can run without keys using starter data.
 
@@ -83,3 +83,4 @@ Add the policies after login and workspace membership are wired.
 ## Data Boundary
 
 Grace-HQ stays private. Harbor gets its own product database.
+

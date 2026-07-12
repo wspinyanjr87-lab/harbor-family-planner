@@ -1,8 +1,8 @@
-# Harbor Family Planner Lite V1
+﻿# Harbor Family Planner Lite V1
 
 Status: **first sellable Harbor product plan**
 
-This is Harbor-Public's working product plan for Harbor Family Planner Lite V1.
+This is Harbor-Family-Planner's working product plan for Harbor Family Planner Lite V1.
 
 ## Product Idea
 
@@ -94,13 +94,13 @@ Avoid direct private Grace memory in V1.
 
 1. Grace Builder designs the product spec.
 2. William approves V1 scope.
-3. Copy or rebuild only public-safe family planner code into Harbor-Public.
+3. Copy or rebuild only public-safe family planner code into Harbor-Family-Planner.
 4. Remove Grace naming from public UI where needed.
 5. Remove private memory, private ledger, photo, and internal-agent dependencies.
 6. Build locally.
 7. Test with household-style sample data.
 8. Package for sale.
-9. Connect deployment only to `Harbor-Public` when ready.
+9. Connect deployment only to `Harbor-Family-Planner` when ready.
 
 ## Acceptance Checklist
 
@@ -143,3 +143,4 @@ REVIEW FIRST
 ```
 
 Then keep it out of Harbor until William approves it.
+
