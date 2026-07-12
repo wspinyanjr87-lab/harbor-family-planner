@@ -10,7 +10,7 @@ Harbor is the public-safe family planner product layer. It is **not** Grace-HQ, 
 Harbor Family HQ / Harbor Family Planner Lite
 ```
 
-The current `meal-planner` branch contains the Next.js app version of the Superdesign Harbor Family HQ dashboard.
+The production app now lives on `main`. The `Harbor-Family-Planner` branch remains the working app branch.
 
 ## What Is Implemented
 
@@ -105,7 +105,7 @@ http://localhost:3000
 npm run build
 ```
 
-GitHub Actions runs `Harbor Build Check` on the `meal-planner` branch.
+GitHub Actions runs `Harbor Build Check` on `main`, `Harbor-Family-Planner`, and the legacy app branches.
 
 ## Vercel Setup
 
@@ -113,8 +113,9 @@ Use:
 
 ```text
 Repository: wspinyanjr87-lab/Harbor-Public
-Branch: meal-planner
+Production branch: main
 Framework: Next.js
+Root directory: leave blank
 Install command: npm install
 Build command: npm run build
 Output directory: leave default
